@@ -25,7 +25,7 @@ variable "target_node" {
   type        = string
 }
 
-variable "template_id_ubuntu" {
+variable "template_name_ubuntu" {
   description = "Template VM ID to clone from"
   type        = string
 }

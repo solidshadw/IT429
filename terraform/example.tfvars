@@ -8,5 +8,5 @@ pm_api_token_secret = "TOKEN"
 pm_api_token_id     = "ID"
 pm_tls_insecure     = true
 target_node         = "pve"
-template_id_ubuntu  = ""                    # Replace with the actual template ID of ubuntu-cloud
+template_id_ubuntu  = "" # Replace with the actual template ID of ubuntu-cloud
 vm_name             = "" # Name for the new VM
