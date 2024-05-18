@@ -118,23 +118,12 @@
                 "useHierarchy": true
               }
             }
-          },
-          {
-            "id": "0c1c47d2f089fbca",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "setupProxmoxVanillaTemplates.md"
-              }
-            }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
