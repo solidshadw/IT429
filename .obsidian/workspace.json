@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "right": {
     "id": "2117a73a940511e7",
@@ -148,9 +148,13 @@
   },
   "active": "c87f91aa39b16e3e",
   "lastOpenFiles": [
+    "screenshots/Pasted image 20240517143752.png",
+    "setupProxmoxVanillaTemplates.md",
+    "screenshots/Pasted image 20240517143622.png",
+    "terraform/terraform.tfstate.backup",
+    "terraform/terraform.tfstate",
     "terraform/example.tfvars",
     "terraform/terraform copy.tfvars",
-    "terraform/terraform.tfstate",
     "terraform/README.md",
     "terraform/instances.tf",
     "terraform/terraform.tfvars",
@@ -158,7 +162,6 @@
     "terraform/main.tf",
     "terraform",
     "screenshots/Pasted image 20240515222104.png",
-    "setupProxmoxVanillaTemplates.md",
     "screenshots/Pasted image 20240515160305.png",
     "screenshots/Pasted image 20240515151834.png",
     "screenshots/Pasted image 20240515151641.png",

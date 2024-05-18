@@ -1,29 +1,81 @@
-We will need some templates on Proxmox. We will use the cloud images and then create templates.
+We will need some templates on Proxmox. We will use the cloud images and then create templates from them.
 
 #### KEEP IN MIND:
-- Don't start the vm when you are creating templates
 - Any username, password, ssh keys, and IPs that you set in the cloud init, will be used for future templates.
+- Please follow step by step and READ carefully
+
+## Setup Terraform User
+
+#### Create the role with specified privileges
+```
+pveum role add terraform_role -privs "Datastore.AllocateSpace,Datastore.Audit,Pool.Allocate,Sys.Audit,Sys.Console,Sys.Modify,VM.Allocate,VM.Audit,VM.Clone,VM.Config.CDROM,VM.Config.Cloudinit,VM.Config.CPU,VM.Config.Disk,VM.Config.HWType,VM.Config.Memory,VM.Config.Network,VM.Config.Options,VM.Migrate,VM.Monitor,VM.PowerMgmt,SDN.Use"
+```
+#### Add the user
+
+```
+pveum user add terraform@pve
+```
+
+And now we set the password, I don't like setting passwords as a command line argument...
+```
+pveum passwd terraform@pve
+```
+#### Assign the role to the user
+```
+pveum aclmod / -user terraform@pve -role terraform_role
+```
+
+#### Create an API token for the user
+
+Make sure that you save the `full-tokenid` and the `value` from that output. As we will insert them in our `terraform.tfvars` file.
+
+```
+pveum user token add terraform@pve terraform_token
+```
+
+![[screenshots/Pasted image 20240517143622.png]]
+
+Add them to our `terraform.tfvars` file:
+
+![[screenshots/Pasted image 20240517143752.png]]
+
+#### Assign the role to the API token
+```
+pveum aclmod / -token 'terraform@pve!terraform_token' -role terraform_role
+```
+
+#### Assign the role to the SDN resource
+
+These commands assign the terraform_role to both the user and the API token for the specific SDN resource path /sdn/zones/localnetwork/vmbr0. This ensures that the user and the API token have the necessary SDN.Use privilege to interact with the SDN resource.
+
+```
+pveum aclmod /sdn/zones/localnetwork/vmbr0 -user terraform@pve -role terraform_role
+```
+```
+pveum aclmod /sdn/zones/localnetwork/vmbr0 -token 'terraform@pve!terraform_token' -role terraform_role
+```
+
 
 ## Ubuntu Server
 
 Default Creds
 ```
-ubuntu:changeme123!
+ubuntu:ubuntu
 ```
 
 - Download this img of the ubuntu server into the proxmox server.
 ```
-wget https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img
+wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64-disk-kvm.img
 ```
 
 - Create a virtual machine, so that we attach the ubuntu server cloud image: 
 ```
-qm create 500 --memory 4096 --name ubuntu-cloud --net0 virtio,bridge=vmbr0 
+qm create 500 --memory 4096 --core 2 --name ubuntu-cloud --net0 virtio,bridge=vmbr0
 ```
 
 - Import the disk to created vm and move image into local-lvm(or whatever storage in proxmox)
 ```
-qm importdisk 500 noble-server-cloudimg-amd64.img local-lvm
+qm importdisk 500 jammy-server-cloudimg-amd64.img local-lvm
 ```
 
 ![[screenshots/Pasted image 20240515145817.png]]
@@ -40,12 +92,12 @@ qm set 500 --ide2 local-lvm:cloudinit
 
 - Create bootdrive, so that we can boot from it:
 ```
-qm set 500 --boot c --bootdisk scsi0
+qm set 500 --boot order=scsi0 --bootdisk scsi0
 ```
 
 - Enable console, so that we can use in proxmox GUI
 ```
-qm set 500 --serial0 socket --vga serial0
+qm set 500 --vga std
 ```
 
 Now we can go into the VM settings and into "Cloud-Init" and we can add some default creds like the ones I provided above or whatever you want. Remember this is only the template. You can change creds later.
@@ -53,11 +105,50 @@ Now we can go into the VM settings and into "Cloud-Init" and we can add some def
 Also, setup DHCP for your VM or an static IP. Since this is a template, set it to DHCP.
 ![[screenshots/Pasted image 20240515151308.png]]
 
-> 🚨 **DO NOT START THE VM! We want the ubuntu vanilla**
+- You can start the VM and let it boot up. Access with the default creds that we set and we will do some cleaning of the VM itself, this are the commands that you are going to run to clean it:
+```
+sudo rm /etc/ssh/ssh_host_*
+```
 
-Make sure the hardware looks like this or you can configure anything you want: 
+```
+sudo truncate -s 0 /etc/machine-id
+```
 
-![[screenshots/Pasted image 20240515151641.png]]
+Make sure there is an symbolic link with the machine id by running this command, if you see the symbolic link you are good.
+```
+ls -l /var/lib/dbus/machine-id
+```
+
+If you didn't see the symbolic link run this and create it:
+```
+sudo ln -s /etc/machine-id /var/lib/dbus/machine-id
+```
+
+Setup serial terminal, make sure this line looks like this
+
+```
+#/etc/default/grub
+(...)
+GRUB_CMDLINE_LINUX_DEFAULT="console=tty1 console=ttyS0"
+(...)
+```
+
+```
+sudo update-grub
+```
+
+```
+sudo apt install cloud-init
+```
+
+```
+echo "datasource_list: [ NoCloud, ConfigDrive ]" | sudo tee /etc/cloud/cloud.cfg.d/99_pve.cfg
+```
+
+```
+sudo cloud-init clean
+```
+
 
 Now, this is the vanilla image we want, you can now right click and click "Convert to Template"
 

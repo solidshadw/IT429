@@ -30,7 +30,12 @@ variable "template_name_ubuntu" {
   type        = string
 }
 
-variable "vm_name" {
-  description = "Name of the new VM"
+variable "template_name_kali" {
+  description = "Template VM ID to clone from"
+  type        = string
+}
+
+variable "ssh_key" {
+  description = "SSH Key"
   type        = string
 }
