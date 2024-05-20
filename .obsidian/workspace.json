@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "setupProxmoxVanillaTemplates.md",
+                "file": "Step-2-Setup-Terraform-User-in-Proxmox-VE.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "setupProxmoxVanillaTemplates.md",
+                "file": "Step-2-Setup-Terraform-User-in-Proxmox-VE.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "setupProxmoxVanillaTemplates.md",
+                "file": "Step-2-Setup-Terraform-User-in-Proxmox-VE.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,8 +137,9 @@
   },
   "active": "c87f91aa39b16e3e",
   "lastOpenFiles": [
+    "Step-1-Create-Templates.md",
+    "Step-2-Setup-Terraform-User-in-Proxmox-VE.md",
     "screenshots/Pasted image 20240517143752.png",
-    "setupProxmoxVanillaTemplates.md",
     "screenshots/Pasted image 20240517143622.png",
     "terraform/terraform.tfstate.backup",
     "terraform/terraform.tfstate",
