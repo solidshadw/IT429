@@ -1,8 +1,9 @@
 We will need some templates on Proxmox. We will use the cloud images and then create templates from them.
 
-#### KEEP IN MIND:
-- Any username, password, ssh keys, and IPs that you set in the cloud init, will be used for future templates.
-- Please follow step by step and READ carefully
+> [!NOTE]
+> Any username, password, ssh keys, and IPs that you set in the cloud init, will be used for future templates.
+> You will have to clean up your template if you decide to spin up the vm and add some tools
+> Please follow step by step and READ carefully
 
 ## Setup Terraform User
 
