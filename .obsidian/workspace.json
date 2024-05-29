@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Step-2-Setup-Terraform-User-in-Proxmox-VE.md",
+                "file": "Step-1-Create-Proxmox-VM-Templates.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 605.5
   },
   "right": {
     "id": "2117a73a940511e7",
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Step-2-Setup-Terraform-User-in-Proxmox-VE.md",
+                "file": "Step-1-Create-Proxmox-VM-Templates.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Step-2-Setup-Terraform-User-in-Proxmox-VE.md",
+                "file": "Step-1-Create-Proxmox-VM-Templates.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -123,7 +123,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -137,26 +138,36 @@
   },
   "active": "c87f91aa39b16e3e",
   "lastOpenFiles": [
-    "Step-1-Create-Templates.md",
     "Step-2-Setup-Terraform-User-in-Proxmox-VE.md",
+    "Guides/Setup your Virtual Machine.md",
+    "Step-2-Setup-Terraform-User-in-Proxmox-VE 1.md",
+    "Step-1-Create-Proxmox-VM-Templates.md",
+    "Guides",
+    "terraform/wazuhTerraform/terraform.tfstate.backup",
+    "terraform/wazuhTerraform/terraform.tfstate",
+    "terraform/wazuhTerraform/ansible/VERSION",
+    "terraform/wazuhTerraform/ansible/roles/wazuh/ansible-wazuh-manager/files/custom_ruleset/rules/sample_custom_rules.xml",
+    "terraform/wazuhTerraform/ansible/roles/wazuh/ansible-wazuh-manager/files/custom_ruleset/decoders/sample_custom_decoders.xml",
+    "terraform/wazuhTerraform/ansible/roles/wazuh/ansible-wazuh-manager/files/custom_ruleset/rules",
+    "terraform/wazuhTerraform/ansible/roles/wazuh/ansible-wazuh-manager/files/custom_ruleset/decoders",
+    "terraform/wazuhTerraform/ansible/roles/wazuh/wazuh-indexer/templates/tlsconfig.yml.j2",
+    "terraform/wazuhTerraform/ansible/roles/wazuh/wazuh-indexer/templates/opensearch.yml.j2",
+    "terraform/wazuhTerraform/ansible/roles/wazuh/ansible-wazuh-manager/README.md",
+    "terraform/wazuhTerraform/ansible/roles/wazuh/ansible-wazuh-agent/README.md",
+    "terraform/wazuhTerraform/ansible/roles/wazuh/ansible-filebeat-oss/README.md",
+    "terraform/wazuhTerraform/ansible/README.md",
+    "terraform/wazuhTerraform/README.md",
+    "terraform/serversTerraform copy/README.md",
+    "terraform/serversTerraform/README.md",
+    "screenshots/Pasted image 20240515160305.png",
+    "screenshots/Pasted image 20240519212908.png",
     "screenshots/Pasted image 20240517143752.png",
     "screenshots/Pasted image 20240517143622.png",
-    "terraform/terraform.tfstate.backup",
-    "terraform/terraform.tfstate",
-    "terraform/example.tfvars",
-    "terraform/terraform copy.tfvars",
     "terraform/README.md",
-    "terraform/instances.tf",
-    "terraform/terraform.tfvars",
-    "terraform/variables.tf",
-    "terraform/main.tf",
-    "terraform",
     "screenshots/Pasted image 20240515222104.png",
-    "screenshots/Pasted image 20240515160305.png",
     "screenshots/Pasted image 20240515151834.png",
     "screenshots/Pasted image 20240515151641.png",
     "screenshots/Pasted image 20240515151308.png",
-    "screenshots",
     "screenshots/Pasted image 20240515145817.png"
   ]
 }
