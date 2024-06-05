@@ -9,6 +9,7 @@ resource "proxmox_vm_qemu" "ubuntu_vm_ansible_server" {
   clone = var.template_name_ubuntu
 
   pool     = "SOC-Class"
+  tags     = "soc"
   agent    = 0
   os_type  = "cloud-init"
   cores    = 2
@@ -16,13 +17,12 @@ resource "proxmox_vm_qemu" "ubuntu_vm_ansible_server" {
   memory   = 8192
   scsihw   = "virtio-scsi-single"
   bootdisk = "scsi0"
+  vmid     = 120
 
 
   ssh_user = "ubuntu"
 
-  sshkeys = <<EOF
-  ${var.public_ssh_key}
-  EOF
+  sshkeys = file(var.public_ssh_key)
 
   disks {
     ide {
@@ -54,32 +54,40 @@ resource "proxmox_vm_qemu" "ubuntu_vm_ansible_server" {
     type        = "ssh"
     user        = self.ssh_user
     private_key = file(var.private_ssh_key)
-    host        = "192.168.0.120"
+    host        = self.ssh_host
     port        = "22"
   }
 
+  provisioner "file" {
+    source = "../wazuh-ansible"
+    destination = "/home/ubuntu/wazuh-ansible"
+    connection {
+      host        = self.ssh_host
+      user        = self.ssh_user
+      private_key = file(var.private_ssh_key)
+    }
+  }
 
   provisioner "remote-exec" {
     inline = [
-      "sudo apt update",
-      "sudo apt install -y ansible",
-      "sudo chown -R ubuntu:ubuntu /home/ubuntu/.ssh",
-      "sudo chmod 600 /home/ubuntu/.ssh/authorized_keys",
+      "sudo DEBIAN_FRONTEND=noninteractive apt-get update",
+      "sudo DEBIAN_FRONTEND=noninteractive apt-get -yq install ansible",
+      "sudo mkdir -p /home/ubuntu/.ssh",
+      "sudo touch /home/ubuntu/.ssh/authorized_keys",
+      "sudo chmod 644 /home/ubuntu/.ssh/authorized_keys",
       "sudo chmod 700 /home/ubuntu/.ssh",
-      "echo '${var.private_ssh_key}' | sudo tee -a /home/ubuntu/.ssh/id_ed25519",
-      "echo '${var.public_ssh_key}' | sudo tee -a /home/ubuntu/.ssh/id_ed25519.pub",
+      "sudo chown -R ubuntu:ubuntu /home/ubuntu/.ssh",
+      "echo '${file(var.private_ssh_key)}' | sudo tee /home/ubuntu/.ssh/id_ed25519",
+      "echo '${file(var.public_ssh_key)}' | sudo tee /home/ubuntu/.ssh/id_ed25519.pub",
       "sudo chmod 600 /home/ubuntu/.ssh/id_ed25519",
       "sudo chmod 644 /home/ubuntu/.ssh/id_ed25519.pub",
-      "sudo chown -R ubuntu:ubuntu /home/ubuntu/.ssh",
-      "export ANSIBLE_CONFIG=/etc/ansible/ansible.cfg"
+      "sudo chown -R ubuntu:ubuntu /home/ubuntu/.ssh/*",
+      "sleep 60",
+      "while fuser /var/lib/dpkg/lock-frontend /var/lib/dpkg/lock /var/cache/apt/archives/lock >/dev/null 2>&1; do echo 'Apt is locked, waiting...'; sleep 5; done;",
+      "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i /home/ubuntu/wazuh-ansible/playbooks/inventory.ini /home/ubuntu/wazuh-ansible/playbooks/wazuh-production-ready.yml --private-key /home/ubuntu/.ssh/id_ed25519"
     ]
   }
-
-  provisioner "local-exec" {
-    working_dir = "../ansible"
-    command     = "sleep 60 && sudo ansible-playbook --become -i ${var.ansible_inventory} ${var.ansible_playbook}"
-    }
-  }
+}
 
 ################ Wazuh Cluster Ubuntu Server Linux VM ################
 
@@ -93,19 +101,19 @@ resource "proxmox_vm_qemu" "ubuntu_vm_indexers" {
   clone = var.template_name_ubuntu
 
   pool  = "SOC-Class"
+  tags  = "soc"
   agent = 0
 
-  os_type                 = "cloud-init"
-  cores                   = 2
-  sockets                 = 2
-  memory                  = 8192
-  scsihw                  = "virtio-scsi-single"
-  bootdisk                = "scsi0"
-  ciuser                  = "ubuntu"
+  os_type  = "cloud-init"
+  cores    = 2
+  sockets  = 2
+  memory   = 8192
+  scsihw   = "virtio-scsi-single"
+  bootdisk = "scsi0"
+  ciuser   = "ubuntu"
+  vmid     = 121 + count.index
   #cipassword              = "ubuntu" # If you want to add a default password
-  sshkeys = <<EOF
-  ${var.public_ssh_key}
-  EOF
+  sshkeys = file(var.public_ssh_key)
 
   disks {
     ide {
@@ -146,19 +154,19 @@ resource "proxmox_vm_qemu" "ubuntu_vm_node1" {
   clone = var.template_name_ubuntu
 
   pool  = "SOC-Class"
+  tags  = "soc"
   agent = 0
 
-  os_type                 = "cloud-init"
-  cores                   = 2
-  sockets                 = 2
-  memory                  = 8192
-  scsihw                  = "virtio-scsi-single"
-  bootdisk                = "scsi0"
-  ciuser                  = "ubuntu"
+  os_type  = "cloud-init"
+  cores    = 2
+  sockets  = 2
+  memory   = 8192
+  scsihw   = "virtio-scsi-single"
+  bootdisk = "scsi0"
+  ciuser   = "ubuntu"
+  vmid     = 124
   #cipassword              = "ubuntu" # If you want to add a default password
-  sshkeys = <<EOF
-  ${var.public_ssh_key}
-  EOF
+  sshkeys = file(var.public_ssh_key)
 
   disks {
     ide {
@@ -197,19 +205,19 @@ resource "proxmox_vm_qemu" "ubuntu_vm_node2" {
   clone = var.template_name_ubuntu
 
   pool  = "SOC-Class"
+  tags  = "soc"
   agent = 0
 
-  os_type                 = "cloud-init"
-  cores                   = 2
-  sockets                 = 2
-  memory                  = 8192
-  scsihw                  = "virtio-scsi-single"
-  bootdisk                = "scsi0"
-  ciuser                  = "ubuntu"
+  os_type  = "cloud-init"
+  cores    = 2
+  sockets  = 2
+  memory   = 8192
+  scsihw   = "virtio-scsi-single"
+  bootdisk = "scsi0"
+  ciuser   = "ubuntu"
+  vmid     = 125
   #cipassword              = "ubuntu" # If you want to add a default password
-  sshkeys = <<EOF
-  ${var.public_ssh_key}
-  EOF
+  sshkeys = file(var.public_ssh_key)
 
   disks {
     ide {
@@ -237,7 +245,6 @@ resource "proxmox_vm_qemu" "ubuntu_vm_node2" {
     memory = 4
   }
 }
-
 # ################ Wazuh Dashboard Ubuntu Server Linux VM ###################
 
 resource "proxmox_vm_qemu" "ubuntu_vm_dashboard" {
@@ -250,19 +257,19 @@ resource "proxmox_vm_qemu" "ubuntu_vm_dashboard" {
   clone = var.template_name_ubuntu
 
   pool  = "SOC-Class"
+  tags  = "soc"
   agent = 0
 
-  os_type                 = "cloud-init"
-  cores                   = 2
-  sockets                 = 2
-  memory                  = 8192
-  scsihw                  = "virtio-scsi-single"
-  bootdisk                = "scsi0"
-  ciuser                  = "ubuntu"
+  os_type  = "cloud-init"
+  cores    = 2
+  sockets  = 2
+  memory   = 8192
+  scsihw   = "virtio-scsi-single"
+  bootdisk = "scsi0"
+  ciuser   = "ubuntu"
+  vmid     = 126
   #cipassword              = "ubuntu" # If you want to add a default password
-  sshkeys = <<EOF
-  ${var.public_ssh_key}
-  EOF
+  sshkeys = file(var.public_ssh_key)
 
   disks {
     ide {

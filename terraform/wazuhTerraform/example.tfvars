@@ -3,13 +3,13 @@
 ######################################################################################
 
 
-pm_api_url          = "https://<IP-HOST:8006/api2/json"
-pm_api_token_secret = "TOKEN"
-pm_api_token_id     = "ID"
-pm_tls_insecure     = true
-target_node         = "pve"
+pm_api_url           = "https://<IP-HOST:8006/api2/json"
+pm_api_token_secret  = "TOKEN"
+pm_api_token_id      = "ID"
+pm_tls_insecure      = true
+target_node          = "pve"
 template_name_ubuntu = "" # Replace with the actual template ID of ubuntu-cloud
-template_name_kali   = ""     # Replace with the actual template ID of kali-cloud   
+template_name_kali   = "" # Replace with the actual template ID of kali-cloud   
 public_ssh_key       = ""
 private_ssh_key      = ""
 ansible_config       = "../ansible/playbooks/ansible.cfg"
