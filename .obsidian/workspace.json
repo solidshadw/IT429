@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "fd226de07d56581f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Questions.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -69,7 +82,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 605.5
+    "width": 605.5,
+    "collapsed": true
   },
   "right": {
     "id": "2117a73a940511e7",
@@ -85,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Step-1-Create-Proxmox-VM-Templates.md",
+                "file": "Questions.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +116,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Step-1-Create-Proxmox-VM-Templates.md",
+                "file": "Questions.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -116,6 +130,16 @@
               "state": {
                 "sortOrder": "frequency",
                 "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "c4b9e5a7acec6ef7",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Questions.md"
               }
             }
           }
@@ -136,12 +160,15 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c87f91aa39b16e3e",
+  "active": "fd226de07d56581f",
   "lastOpenFiles": [
+    "terraform/calderaTerraform/terraform.tfstate.backup",
+    "terraform/calderaTerraform/terraform.tfstate",
+    "Step-1-Create-Proxmox-VM-Templates.md",
+    "Questions.md",
     "Step-2-Setup-Terraform-User-in-Proxmox-VE.md",
     "Guides/Setup your Virtual Machine.md",
     "Step-2-Setup-Terraform-User-in-Proxmox-VE 1.md",
-    "Step-1-Create-Proxmox-VM-Templates.md",
     "Guides",
     "terraform/wazuhTerraform/terraform.tfstate.backup",
     "terraform/wazuhTerraform/terraform.tfstate",
@@ -151,7 +178,6 @@
     "terraform/wazuhTerraform/ansible/roles/wazuh/ansible-wazuh-manager/files/custom_ruleset/rules",
     "terraform/wazuhTerraform/ansible/roles/wazuh/ansible-wazuh-manager/files/custom_ruleset/decoders",
     "terraform/wazuhTerraform/ansible/roles/wazuh/wazuh-indexer/templates/tlsconfig.yml.j2",
-    "terraform/wazuhTerraform/ansible/roles/wazuh/wazuh-indexer/templates/opensearch.yml.j2",
     "terraform/wazuhTerraform/ansible/roles/wazuh/ansible-wazuh-manager/README.md",
     "terraform/wazuhTerraform/ansible/roles/wazuh/ansible-wazuh-agent/README.md",
     "terraform/wazuhTerraform/ansible/roles/wazuh/ansible-filebeat-oss/README.md",
