@@ -16,6 +16,6 @@
 # template_name_kali   = ""     # Replace with the actual template ID of kali-cloud   
 # public_ssh_key       = "" # /home/EXAMPLE/.ssh/ansibleKeys.pub
 # private_ssh_key      = "" # /home/EXAMPLE/.ssh/ansibleKeys
-# ansible_config       = "../wazuh-ansible/playbooks/ansible.cfg"
-# ansible_playbook     = "../wazuh-ansible/playbooks/wazuh-production-ready.yml"
-# ansible_inventory    = "../wazuh-ansible/playbooks/inventory.ini"
+# ansible_config       = "../wazy-ansible/playbooks/ansible.cfg"
+# ansible_playbook     = "../wazy-ansible/playbooks/wazuh-production-ready.yml"
+# ansible_inventory    = "../wazy-ansible/playbooks/inventory.ini"

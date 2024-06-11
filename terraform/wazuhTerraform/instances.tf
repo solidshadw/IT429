@@ -59,8 +59,8 @@ resource "proxmox_vm_qemu" "ubuntu_vm_ansible_server" {
   }
 
   provisioner "file" {
-    source = "../wazuh-ansible"
-    destination = "/home/ubuntu/wazuh-ansible"
+    source = "../wazy-ansible"
+    destination = "/home/ubuntu/wazy-ansible"
     connection {
       host        = self.ssh_host
       user        = self.ssh_user
@@ -84,7 +84,7 @@ resource "proxmox_vm_qemu" "ubuntu_vm_ansible_server" {
       "sudo chown -R ubuntu:ubuntu /home/ubuntu/.ssh/*",
       "sleep 60",
       "while fuser /var/lib/dpkg/lock-frontend /var/lib/dpkg/lock /var/cache/apt/archives/lock >/dev/null 2>&1; do echo 'Apt is locked, waiting...'; sleep 5; done;",
-      "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i /home/ubuntu/wazuh-ansible/playbooks/inventory.ini /home/ubuntu/wazuh-ansible/playbooks/wazuh-production-ready.yml --private-key /home/ubuntu/.ssh/id_ed25519"
+      "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i /home/ubuntu/wazuh-ansible/playbooks/inventory.ini /home/ubuntu/wazy-ansible/playbooks/wazuh-production-ready.yml --private-key /home/ubuntu/.ssh/id_ed25519"
     ]
   }
 }
