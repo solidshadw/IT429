@@ -13,26 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Step-1-Create-Proxmox-VM-Templates.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "fd226de07d56581f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Questions.md",
+                "file": "Step-2-Create-Proxmox-Windows10-Template.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -82,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 605.5,
-    "collapsed": true
+    "width": 348.5
   },
   "right": {
     "id": "2117a73a940511e7",
@@ -99,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Questions.md",
+                "file": "Step-2-Create-Proxmox-Windows10-Template.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Questions.md",
+                "file": "Step-2-Create-Proxmox-Windows10-Template.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -139,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Questions.md"
+                "file": "Step-2-Create-Proxmox-Windows10-Template.md"
               }
             }
           }
@@ -160,22 +146,34 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "fd226de07d56581f",
+  "active": "c87f91aa39b16e3e",
   "lastOpenFiles": [
-    "terraform/wazy-ansible/roles/wazuh/ansible-wazuh-manager/files/custom_ruleset/rules/sample_custom_rules.xml",
-    "terraform/wazy-ansible/roles/wazuh/ansible-wazuh-manager/files/custom_ruleset/decoders/sample_custom_decoders.xml",
-    "terraform/wazy-ansible/roles/wazuh/ansible-wazuh-manager/files/custom_ruleset/rules",
-    "terraform/wazy-ansible/roles/wazuh/ansible-wazuh-manager/files/custom_ruleset/decoders",
-    "terraform/wazy-ansible/roles/wazuh/wazuh-indexer/tasks/security_actions.yml",
-    "terraform/wazy-ansible/roles/wazuh/wazuh-indexer/tasks/RMRedHat.yml",
-    "terraform/wazy-ansible/roles/wazuh/wazuh-indexer/tasks/RedHat.yml",
-    "terraform/wazy-ansible/roles/wazuh/wazuh-indexer/tasks/main.yml",
-    "terraform/wazy-ansible/roles/wazuh/wazuh-indexer/tasks/local_actions.yml",
-    "terraform/wazy-ansible/roles/wazuh/wazuh-indexer/tasks/Debian.yml",
-    "terraform/wazy-ansible/roles/wazuh/wazuh-indexer/templates/tlsconfig.yml.j2",
+    "terraform/wazy-ansible/notes.md",
+    "terraform/classEnvironment/terraform.tfstate.backup",
+    "terraform/classEnvironment/terraform.tfstate",
+    "terraform/classEnvironment/tfvars.example",
+    "terraform/classEnvironment/setupFiles/vectr_env",
+    "terraform/classEnvironment/setupFiles/local.yml",
+    "terraform/classEnvironment/setupFiles/caldera.service",
+    "terraform/classEnvironment/setupFiles/bootstrap.sh",
+    "terraform/classEnvironment/setupFiles",
+    "terraform/classEnvironment/main.tf",
+    "terraform/classEnvironment/variables.tf",
+    "terraform/windowsTerraform/README.md",
+    "terraform/wazuhTerraform copy/README.md",
+    "screenshots/Pasted image 20240610222113.png",
+    "screenshots/Pasted image 20240610221936.png",
+    "Step-2-Create-Proxmox-Windows10-Template.md",
+    "Step-1-Create-Proxmox-Linux-VM-Templates.md",
     "terraform/wazy-ansible/roles/wazuh/ansible-wazuh-manager/README.md",
     "terraform/wazy-ansible/roles/wazuh/ansible-wazuh-agent/README.md",
     "terraform/wazy-ansible/roles/wazuh/ansible-filebeat-oss/README.md",
+    "Step-3-Setup-Terraform-User-in-Proxmox-VE.md",
+    "README.md",
+    "screenshots/Pasted image 20240610205621.png",
+    "screenshots/Pasted image 20240610205017.png",
+    "screenshots/Pasted image 20240610204805.png",
+    "Questions.md",
     "terraform/wazy-ansible/SECURITY.md",
     "terraform/wazy-ansible/README.md",
     "terraform/wazy-ansible/CHANGELOG.md",
@@ -185,27 +183,15 @@
     "terraform/wazy/SECURITY.md",
     "terraform/wazy/README.md",
     "terraform/wazy/CHANGELOG.md",
-    "terraform/wazy-ansible/roles/wazuh/ansible-wazuh-manager/README.md",
-    "terraform/wazy-ansible/roles/wazuh/ansible-filebeat-oss/README.md",
-    "terraform/wazy-ansible/roles/wazuh/ansible-wazuh-agent/README.md",
     "terraform/wazy-ansible/README.md",
     "terraform/wazy-ansible/SECURITY.md",
     "terraform/wazy-ansible/CHANGELOG.md",
     "terraform/wazy-ansible copy/roles/wazuh/ansible-wazuh-manager/README.md",
     "terraform/wazy-ansible copy/roles/wazuh/ansible-wazuh-agent/README.md",
-    "terraform/wazy-ansible copy/roles/wazuh/ansible-filebeat-oss/README.md",
-    "terraform/wazy-ansible copy/README.md",
-    "terraform/wazy-ansible copy/CHANGELOG.md",
-    "Step-1-Create-Proxmox-VM-Templates.md",
-    "Questions.md",
     "screenshots/Pasted image 20240515160305.png",
     "screenshots/Pasted image 20240519212908.png",
     "screenshots/Pasted image 20240517143752.png",
     "screenshots/Pasted image 20240517143622.png",
-    "screenshots/Pasted image 20240515222104.png",
-    "screenshots/Pasted image 20240515151834.png",
-    "screenshots/Pasted image 20240515151641.png",
-    "screenshots/Pasted image 20240515151308.png",
-    "screenshots/Pasted image 20240515145817.png"
+    "screenshots/Pasted image 20240515222104.png"
   ]
 }

@@ -59,7 +59,7 @@ resource "proxmox_vm_qemu" "ubuntu_vm_ansible_server" {
   }
 
   provisioner "file" {
-    source = "../wazy-ansible"
+    source      = "../wazy-ansible"
     destination = "/home/ubuntu/wazy-ansible"
     connection {
       host        = self.ssh_host
@@ -70,21 +70,23 @@ resource "proxmox_vm_qemu" "ubuntu_vm_ansible_server" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo DEBIAN_FRONTEND=noninteractive apt-get update",
-      "sudo DEBIAN_FRONTEND=noninteractive apt-get -yq install ansible",
+      "while fuser /var/lib/dpkg/lock-frontend /var/lib/dpkg/lock /var/cache/apt/archives/lock >/dev/null 2>&1; do sleep 5; done;",
+      "RETRIES=5; COUNT=0; until sudo DEBIAN_FRONTEND=noninteractive apt-get update; do COUNT=$(($COUNT + 1)); if [ $COUNT -ge $RETRIES ]; then exit 1; fi; sleep 10; done",
       "sudo mkdir -p /home/ubuntu/.ssh",
       "sudo touch /home/ubuntu/.ssh/authorized_keys",
       "sudo chmod 644 /home/ubuntu/.ssh/authorized_keys",
       "sudo chmod 700 /home/ubuntu/.ssh",
       "sudo chown -R ubuntu:ubuntu /home/ubuntu/.ssh",
-      "echo '${file(var.private_ssh_key)}' | sudo tee /home/ubuntu/.ssh/id_ed25519",
-      "echo '${file(var.public_ssh_key)}' | sudo tee /home/ubuntu/.ssh/id_ed25519.pub",
-      "sudo chmod 600 /home/ubuntu/.ssh/id_ed25519",
-      "sudo chmod 644 /home/ubuntu/.ssh/id_ed25519.pub",
+      "echo '${file(var.private_ssh_key)}' | sudo tee /home/ubuntu/.ssh/ansibleKeys",
+      "echo '${file(var.public_ssh_key)}' | sudo tee /home/ubuntu/.ssh/ansibleKeys.pub",
+      "sudo chmod 600 /home/ubuntu/.ssh/ansibleKeys",
+      "sudo chmod 644 /home/ubuntu/.ssh/ansibleKeys.pub",
       "sudo chown -R ubuntu:ubuntu /home/ubuntu/.ssh/*",
-      "sleep 60",
-      "while fuser /var/lib/dpkg/lock-frontend /var/lib/dpkg/lock /var/cache/apt/archives/lock >/dev/null 2>&1; do echo 'Apt is locked, waiting...'; sleep 5; done;",
-      "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i /home/ubuntu/wazuh-ansible/playbooks/inventory.ini /home/ubuntu/wazy-ansible/playbooks/wazuh-production-ready.yml --private-key /home/ubuntu/.ssh/id_ed25519"
+      "sleep 30",
+      "while fuser /var/lib/dpkg/lock-frontend /var/lib/dpkg/lock /var/cache/apt/archives/lock >/dev/null 2>&1; do sleep 5; done;",
+      "RETRIES=8; COUNT=0; until sudo DEBIAN_FRONTEND=noninteractive apt-get -yq install ansible; do COUNT=$(($COUNT + 1)); if [ $COUNT -ge $RETRIES ]; then exit 1; fi; sleep 20; done",
+      # Adding some retries in case it fails
+      "RETRIES=3; COUNT=0; until ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i /home/ubuntu/wazy-ansible/playbooks/inventory.ini /home/ubuntu/wazy-ansible/playbooks/wazuh-production-ready.yml --private-key /home/ubuntu/.ssh/ansibleKeys; do COUNT=$(($COUNT + 1)); if [ $COUNT -ge $RETRIES ]; then exit 1; fi; sleep 10; done"
     ]
   }
 }

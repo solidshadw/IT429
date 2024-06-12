@@ -7,7 +7,7 @@ We will need some templates on Proxmox. We will use the cloud images and then cr
 > - You will have to clean up your template if you decide to spin up the vm and add some tools, please refer to the clean up step.
 > - Please follow step by step and READ carefully.
 
-## Ubuntu Server
+# Ubuntu Server
 
 Default Creds
 ```sh
@@ -84,7 +84,7 @@ Now, this is the template for a ubuntu server I want, you can now right click an
 
 ![[screenshots/Pasted image 20240515151834.png]]
 
-## Kali
+# Kali
 
 Default Creds
 ```
@@ -175,99 +175,6 @@ qm set 501 --vga std
 Go into the GUI, click on the vm and right click and "Convert to template"
 
 I also did give it 8GB of ram and more cores, you can switch this depending on how powerful is your server. Remember this is only a template, you can modify after you clone the vm.
-
-## Windows 10
-
-You will need an Windows 10 ISO. Download it and put it on the proxmox server.
-
- Create a virtual machine, so that we attach the kali image: 
-```
-qm create 502 --memory 8192 --name windows-10 --net0 virtio,bridge=vmbr0 
-```
-
-- Import the disk to created vm and move image into local-lvm(or whatever storage in proxmox)
-```
-qm importdisk 502 windows-10 local-lvm
-```
-
-![[screenshots/Pasted image 20240515145817.png]]
-
-- `qm set` to help setup and scsi and attach the kali image that we just imported, make sure that whatever path you get from the output, that is your `scsi0`
-```
-qm set 502 --scsihw virtio-scsi-single --scsi0 local-lvm:vm-502-disk-0 --sockets 2 --cores 4 --cpu x86-64-v2-AES
-```
-
-- Create bootdrive, so that we can boot from it:
-```
-qm set 502 --boot c --bootdisk scsi0
-```
-
-- Enable console, so that we can use in proxmox GUI
-```
-qm set 502 --vga std
-```
-## Windows Server
-```
-https://cloud-images.ubuntu.com/
-```
-
-## Centos9Stream
-
-Default Creds
-```
-luigi:changeme123!
-```
-
-- Download this img of the centos9 server into the proxmox server.
-```
-wget https://cloud.centos.org/centos/9-stream/x86_64/images/CentOS-Stream-GenericCloud-x86_64-9-latest.x86_64.qcow2
-```
-
-- Create a virtual machine, so that we attach the ubuntu server cloud image: 
-```
-qm create 503 --memory 24576 --name centos9stream-cloud --net0 virtio,bridge=vmbr0
-```
-
-- Import the disk to created vm and move image into local-lvm(or whatever storage in proxmox)
-```
-qm importdisk 503 CentOS-Stream-GenericCloud-x86_64-9-latest.x86_64.qcow2 local-lvm
-```
-
-![[screenshots/Pasted image 20240515222104.png]]
-
-- `qm set` to help setup and scsi and attach the ubuntu image that we just imported, make sure that whatever path you get from the output, that is your `scsi0`
-```
-qm set 503 --scsihw virtio-scsi-single --scsi0 local-lvm:vm-503-disk-0  --sockets 2 --cores 4 --cpu x86-64-v2-AES
-```
-
-- We need to setup cloud init, this command will create a cdrom and attach it to the vm
-```
-qm set 503 --ide2 local-lvm:cloudinit
-```
-
-- Create bootdrive, so that we can boot from it:
-```
-qm set 503 --boot c --bootdisk scsi0
-```
-
-- Enable console, so that we can use in proxmox GUI
-```
-qm set 503 --serial0 socket --vga serial0
-```
-
-Now we can go into the VM settings and into "Cloud-Init" and we can add some default creds like the ones I provided above or whatever you want. Remember this is only the template. You can change creds later.
-
-Also, setup DHCP for your VM or an static IP. Since this is a template, set it to DHCP.
-
-
-> 🚨 **DO NOT START THE VM! We want the ubuntu vanilla**
-
-Make sure the hardware looks like this or you can configure anything you want: 
-
-
-
-Now, this is the vanilla image we want, you can now right click and click "Convert to Template"
-
 
 ## Cleaning up a VM 
 

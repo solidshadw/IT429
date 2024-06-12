@@ -15,21 +15,25 @@ resource "proxmox_vm_qemu" "ubuntu_vm" {
   cores                   = 2
   sockets                 = 1
   memory                  = 4096
-  cloudinit_cdrom_storage = "local-lvm"
   scsihw                  = "virtio-scsi-single"
   bootdisk                = "scsi0"
   ciuser                  = "ubuntu"
   #cipassword              = "ubuntu" # If you want to add a default password
-  sshkeys = <<EOF
-  ${var.ssh_key}
-  EOF
+  sshkeys = file(var.public_ssh_key)
 
   disks {
+    ide {
+      ide2 {
+        cloudinit {
+          storage = "local-lvm"
+        }
+      }
+    }
     scsi {
       scsi0 {
         disk {
           storage = "local-lvm"
-          size    = "20G"
+          size    = "80G"
         }
       }
     }
@@ -69,16 +73,23 @@ resource "proxmox_vm_qemu" "ubuntu_vm" {
 #   ${var.ssh_key}s
 #   EOF
 
-#   disks {
-#     scsi {
-#       scsi0 {
-#         disk {
-#           storage = "local-lvm"
-#           size    = "120G"
-#         }
-#       }
-#     }
-#   }
+  # disks {
+  #   ide {
+  #     ide2 {
+  #       cloudinit {
+  #         storage = "local-lvm"
+  #       }
+  #     }
+  #   }
+  #   scsi {
+  #     scsi0 {
+  #       disk {
+  #         storage = "local-lvm"
+  #         size    = "80G"
+  #       }
+  #     }
+  #   }
+  # }
 
 #   ipconfig0 = "ip=192.168.0.10${count.index + 1}/24,gw=192.168.0.1"
 

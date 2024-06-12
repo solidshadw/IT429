@@ -8,10 +8,6 @@
       - tar
       - curl
     state: present
-  register: package_status
-  until: "package_status is not failed"  
-  retries: 10
-  delay: 10
 
 - include_vars: ../../vars/repo_vars.yml
 
@@ -37,22 +33,6 @@
 - include_tasks: "Debian.yml"
   when: ansible_os_family == "Debian"
 
-- name: Generate the wazuh-keystore (username)
-  shell: >
-    /var/ossec/bin/wazuh-keystore -f indexer -k username -v {{ indexer_security_user }}
-  notify: restart wazuh-manager
-  tags:
-    - init
-    - config
-
-- name: Generate the wazuh-keystore (password)
-  shell: >
-    /var/ossec/bin/wazuh-keystore -f indexer -k password -v {{ indexer_security_password }}
-  notify: restart wazuh-manager
-  tags:
-    - init
-    - config
-  
 - name: Install expect
   package:
     name: expect
@@ -116,7 +96,7 @@
             dest="{{ wazuh_dir }}/etc/rules/local_rules.xml"
             owner=wazuh
             group=wazuh
-            mode=0660
+            mode=0640
   notify: restart wazuh-manager
   tags:
     - init
@@ -128,7 +108,7 @@
         dest="{{ wazuh_dir }}/etc/rules/"
         owner=wazuh
         group=wazuh
-        mode=0660
+        mode=0640
   notify: restart wazuh-manager
   tags:
     - init
@@ -140,7 +120,7 @@
             dest="{{ wazuh_dir }}/etc/decoders/local_decoder.xml"
             owner=wazuh
             group=wazuh
-            mode=0660
+            mode=0640
   notify: restart wazuh-manager
   tags:
     - init
@@ -152,7 +132,7 @@
         dest="{{ wazuh_dir }}/etc/decoders/"
         owner=wazuh
         group=wazuh
-        mode=0660
+        mode=0640
   notify: restart wazuh-manager
   tags:
     - init
@@ -165,7 +145,7 @@
     dest: "{{ wazuh_dir }}/etc/shared/default/agent.conf"
     owner: wazuh
     group: wazuh
-    mode: 0660
+    mode: 0640
     validate: "{{ wazuh_dir }}/bin/verify-agent-conf -f %s"
   notify: restart wazuh-manager
   tags:
@@ -310,11 +290,6 @@
       with_items:
         - "{{ wazuh_api_users }}"
 
-    - name: Delete create_user script
-      file:
-        path: "{{ wazuh_dir }}/framework/scripts/create_user.py"
-        state: absent
-
   tags:
     - config_api_users
   when:
@@ -357,3 +332,4 @@
 
 - name: Run uninstall tasks
   include_tasks: uninstall.yml
+  when: not wazuh_manager_sources_installation.enabled

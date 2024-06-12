@@ -58,17 +58,21 @@ resource "proxmox_vm_qemu" "ubuntu_vm_caldera_server" {
     port        = "22"
   }
 
+  provisioner "file" {
+    source      = "./setupFiles"
+    destination = "/home/ubuntu/setupFiles"
+    connection {
+      host        = self.ssh_host
+      user        = self.ssh_user
+      private_key = file(var.private_ssh_key)
+    }
+  }
+
   provisioner "remote-exec" {
     inline = [
-      "while sudo fuser /var/lib/dpkg/lock-frontend >/dev/null 2>&1; do echo 'Waiting for lock...'; sleep 5; done",
-      "sudo DEBIAN_FRONTEND=noninteractive apt-get update",
-      "sudo DEBIAN_FRONTEND=noninteractive apt-get -yq install git python3 python3-pip docker docker-compose",
-      "git clone https://github.com/mitre/caldera.git --recursive",
-      "cd caldera",
-      ## Change the host IP in the default.yml file. Current bug on caldera
-      "sed -i 's/^host: .*/host: 192.168.0.130/' conf/default.yml",
-      "sudo docker-compose build",
-      "sudo docker run -d -p 7010:7010 -p 7011:7011/udp -p 7012:7012 -p 8888:8888 caldera:latest"
+      "cd /home/ubuntu/setupFiles",
+      "chmod +x bootstrap.sh",
+      "sudo ./bootstrap.sh"
     ]
   }
 }
