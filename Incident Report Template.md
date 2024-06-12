@@ -1,7 +1,8 @@
 # Incident Response Report
 
 ## Summary
-- **Severity:** P1/P2/P3/P4
+- **Severity:** [Critical,High,Medium,Low]
+- **Priority:** [P1/P2/P3/P4]
 - **Asset(s) Affected:** [List of affected products]
 - **Incident Owner:** [Name of the analyst]
 - **Contact Information:** [Any other key contacts involved in the incident response]
@@ -10,11 +11,15 @@
 ## Incident Timeline
 High level summary of events timeline of the incident and the response.
 ## Severity Classification
-- **P1 - Critical Severity:** Immediate action required, potential widespread impact.
-- **P2 - High Severity:** Significant impact, needs prompt attention.
-- **P3 - Medium Severity:** Moderate impact, normal response time.
-- **P4 - Low Severity:** Minimal impact, routine monitoring.
-
+- **Critical Severity:** Immediate action required, potential widespread impact.
+- **High Severity:** Significant impact, needs prompt attention.
+- **Medium Severity:** Moderate impact, normal response time.
+- **Low Severity:** Minimal impact, routine monitoring.
+## Priority Classification
+- **P1 - Highest Priority:** Requires immediate response and resolution. Business-critical functions affected.
+- **P2 - High Priority:** Needs swift resolution. Significant business impact. -
+- **P3 - Medium Priority:** Normal response time. Moderate business impact. 
+- **P4 - Low Priority:** Routine monitoring. Minimal business impact.
 ## Triage and Analysis
 Provide detailed information about the incident, including:
 - Description of the incident.
