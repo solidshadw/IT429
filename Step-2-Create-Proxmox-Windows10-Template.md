@@ -70,12 +70,12 @@
 
 1. **Install QEMU Guest Agent**:
 	- Once you are in the vm and it has finished rebooting and updating. You will go to the Proxmox console and add the `virtio.iso` .
-   ![[/screenshots/Pasted image 20240610205621.png]]
+   ![screen2](/screenshots/Pasted image 20240610205621.png)
 	   - Navigate to the VirtIO ISO and select the appropriate driver for your disk and network.
-	![[/screenshots/Pasted image 20240610204805.png]]
+	 ![screen2](/screenshots/Pasted image 20240610204805.png)
 	- You can also install the QEMU Guest Agent, Select `guest-agent`.
 	- And select `qemu-ga-x86_64` and install it.
-	![[/screenshots/Pasted image 20240610205017.png]]
+	![screen2](screenshots/Pasted image 20240610205017.png)
 
 2. **Enable QEMU Guest Agent**:
    - In Proxmox, go to your VM’s **Options** tab.
@@ -84,8 +84,8 @@
 ## Step 5: Install CloudBase Init
 1. Install cloudbase-init build from the official site: https://cloudbase.it/cloudbase-init/#download
 2. Why Continous Build? Because the stable build dates from 2020 and doesn't include functionalities we use.
-   ![[/screenshots/Pasted image 20240610221936.png]]
-   ![[/screenshots/Pasted image 20240610222113.png]]
+   ![screen0](/screenshots/Pasted image 20240610221936.png)
+   ![screen2](/screenshots/Pasted image 20240610222113.png)
    
 ## Step 5: Sysprep and Convert to Template
 
