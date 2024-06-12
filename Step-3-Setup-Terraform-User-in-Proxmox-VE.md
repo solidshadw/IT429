@@ -34,11 +34,11 @@ Make sure that you save the `full-tokenid` and the `value` from that output. As 
 pveum user token add terraform@pve terraform_token
 ```
 
-![[screenshots/Pasted image 20240517143622.png]]
+![[screenshots/Pasted_image_20240517143622.png]]
 
 Add them to our `terraform.tfvars` file:
 
-![[screenshots/Pasted image 20240517143752.png]]
+![[screenshots/Pasted_image_20240517143752.png]]
 
 ### Assign the role to the API token
 Ensure the API token has the same privileges as the Terraform user:
