@@ -47,7 +47,7 @@ qm create 500 --memory 4096 --core 2 --name ubuntu-template --net0 virtio,bridge
 qm importdisk 500 jammy-server-cloudimg-amd64.img local-lvm
 ```
 
-![screen1]screenshots/Pasted_image_20240515145817.png)
+![screen1](/screenshots/Pasted_image_20240515145817.png)
 
 - `qm set` to help setup and scsi and attach the ubuntu image that we just imported, make sure that whatever path you get from the output, that is your `scsi0`
 ```sh
@@ -77,12 +77,12 @@ qm set 500 --vga std
 Now we can go into the VM settings and into "Cloud-Init" and we can add some default creds like the ones I provided above or whatever you want. Remember this is only for the template. You can change creds later.
 
 I didn't set anything else because I'll be setting the rest with proxmox.
-![screen2]screenshots/Pasted_image_20240519212908.png)
+![screen2](/screenshots/Pasted_image_20240519212908.png)
 
 
 Now, this is the template for a ubuntu server I want, you can now right click and click "Convert to Template".
 
-![screen3]screenshots/Pasted_image_20240515151834.png)
+![screen3](/screenshots/Pasted_image_20240515151834.png)
 
 # Kali
 
@@ -145,7 +145,7 @@ qm create 501 --memory 8192 --name kali-2024-1 --net0 virtio,bridge=vmbr0
 qm importdisk 501 kali-2024.1.img local-lvm
 ```
 
-![screen4]screenshots/Pasted_image_20240515145817.png)
+![screen4](/screenshots/Pasted_image_20240515145817.png)
 
 - `qm set` to help setup and scsi and attach the kali image that we just imported, make sure that whatever path you get from the output, that is your `scsi0`
 ```sh

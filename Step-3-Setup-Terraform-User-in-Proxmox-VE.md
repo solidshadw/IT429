@@ -34,7 +34,7 @@ Make sure that you save the `full-tokenid` and the `value` from that output. As 
 pveum user token add terraform@pve terraform_token
 ```
 
-![screen1]screenshots/Pasted_image_20240517143622.png)
+![screen1](/screenshots/Pasted_image_20240517143622.png)
 
 Add them to our `terraform.tfvars` file:
 
