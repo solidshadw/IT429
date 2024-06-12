@@ -1,5 +1,3 @@
-# Using Obsidian Markdown with GitHub
-
 ## Introduction
 Obsidian is a powerful knowledge base that works on top of a local folder of plain text Markdown files. GitHub is a web-based platform used for version control and collaborative coding. Combining Obsidian with GitHub allows you to back up your notes, collaborate with others, and track changes over time.
 

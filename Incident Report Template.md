@@ -19,9 +19,7 @@ High level summary of events timeline of the incident and the response.
 Provide detailed information about the incident, including:
 - Description of the incident.
 - Initial detection and alerting methods.
-- Immediate actions taken.
-
-## Investigation
+- Any immediate actions taken.
 - Conduct investigative Q&A.
 - Document new Indicators of Compromise (IOCs).
 - Identify the scope and impact.
