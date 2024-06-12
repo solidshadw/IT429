@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "99a089a1fe11a6d1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Incident Report Template.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -69,7 +82,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 348.5
+    "width": 292.5
   },
   "right": {
     "id": "2117a73a940511e7",
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Step-2-Create-Proxmox-Windows10-Template.md",
+                "file": "Incident Report Template.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Step-2-Create-Proxmox-Windows10-Template.md",
+                "file": "Incident Report Template.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Step-2-Create-Proxmox-Windows10-Template.md"
+                "file": "Incident Report Template.md"
               }
             }
           }
@@ -146,8 +159,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c87f91aa39b16e3e",
+  "active": "99a089a1fe11a6d1",
   "lastOpenFiles": [
+    "Guides/Setup your Virtual Machine.md",
+    "Incident Report Template.md",
+    "Step-2-Create-Proxmox-Windows10-Template.md",
     "screenshots/Pasted_image_20240610222113.png",
     "screenshots/Pasted_image_20240610221936.png",
     "screenshots/Pasted_image_20240610205621.png",
@@ -158,7 +174,6 @@
     "screenshots/Pasted_image_20240517143622.png",
     "screenshots/Pasted_image_20240515222104.png",
     "screenshots/Pasted_image_20240515151834.png",
-    "screenshots/Pasted_image_20240515151641.png",
     "terraform/wazy-ansible/notes.md",
     "terraform/classEnvironment/terraform.tfstate.backup",
     "terraform/classEnvironment/terraform.tfstate",
@@ -172,7 +187,6 @@
     "terraform/classEnvironment/variables.tf",
     "terraform/windowsTerraform/README.md",
     "terraform/wazuhTerraform copy/README.md",
-    "Step-2-Create-Proxmox-Windows10-Template.md",
     "Step-1-Create-Proxmox-Linux-VM-Templates.md",
     "terraform/wazy-ansible/roles/wazuh/ansible-wazuh-manager/README.md",
     "terraform/wazy-ansible/roles/wazuh/ansible-wazuh-agent/README.md",
@@ -192,7 +206,6 @@
     "terraform/wazy-ansible/README.md",
     "terraform/wazy-ansible/SECURITY.md",
     "terraform/wazy-ansible/CHANGELOG.md",
-    "terraform/wazy-ansible copy/roles/wazuh/ansible-wazuh-manager/README.md",
-    "terraform/wazy-ansible copy/roles/wazuh/ansible-wazuh-agent/README.md"
+    "terraform/wazy-ansible copy/roles/wazuh/ansible-wazuh-manager/README.md"
   ]
 }
