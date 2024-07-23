@@ -1,0 +1,48 @@
+variable "pm_api_url" {
+  default = "https://192.168.0.200:8006/api2/json"
+}
+
+variable "pm_user" {
+  default = "terraform@pve!terraform_token"
+}
+
+variable "pm_api_token" {
+  default = "terraform@pve!terraform_token=REDACTED"
+}
+
+variable "pm_node" {
+  default = "pve"
+}
+
+variable "pm_pool" {
+  default = "SOC-Class"
+}
+
+variable "pm_full_clone" {
+  default = true
+}
+
+# change this value with the id of your templates (win10 can be ignored if not used)
+variable "vm_template_id" {
+  type = map(number)
+
+  # set the ids according to your templates (only WinServer2019_x64 used in BYTEKINGDOM-light)
+  default = {
+    "WinServer2019_x64"  = 102
+    "WinServer2016_x64"  = 103
+    "Windows10_22h2_x64" = 0
+  }
+}
+
+variable "storage" {
+  # change this with the name of the storage you use
+  default = "local-lvm"
+}
+
+variable "network_bridge" {
+  default = "vmbr0"
+}
+
+variable "network_model" {
+  default = "e1000"
+}

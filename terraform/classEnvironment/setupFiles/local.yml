@@ -5,7 +5,7 @@ app.contact.dns.domain: mycaldera.caldera
 app.contact.dns.socket: 0.0.0.0:8853
 app.contact.gist: API_KEY
 app.contact.html: /weather
-app.contact.http: http://0.0.0.0:8888
+app.contact.http: http://0.0.0.0:8888/
 app.contact.slack.api_key: SLACK_TOKEN
 app.contact.slack.bot_id: SLACK_BOT_ID
 app.contact.slack.channel_id: SLACK_CHANNEL_ID
@@ -22,6 +22,7 @@ app.contact.ftp.user: caldera_user
 app.contact.tcp: 0.0.0.0:7010
 app.contact.udp: 0.0.0.0:7011
 app.contact.websocket: 0.0.0.0:7012
+app.frontend.api_base_url: http://0.0.0.0:8888
 objects.planners.default: atomic
 crypt_salt: REPLACE_WITH_RANDOM_VALUE
 encryption_key: ADMIN123

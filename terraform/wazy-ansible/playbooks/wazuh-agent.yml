@@ -1,5 +1,5 @@
 ---
-- hosts: wazuh-agents
+- hosts: wazuh_agents
   become: yes
   become_user: root
   roles:

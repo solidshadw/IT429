@@ -43,12 +43,13 @@ sudo pip3 install -r requirements.txt
 sudo cp /home/ubuntu/setupFiles/caldera.service /etc/systemd/system/caldera.service
 sudo cp /home/ubuntu/setupFiles/local.yml /opt/caldera/conf/local.yml
 
-# Caldera SSL setup
+# Caldera setup
 echo "Modifying caldera configuration files"
 IP_ADDRESS=$(hostname -I | awk '{print $1}')
 export IP_ADDRESS
 sed -i "s|http://0.0.0.0:8888|http://$IP_ADDRESS:8888|" conf/local.yml
 sed -i "s|host: 0.0.0.0|host: $IP_ADDRESS|" conf/local.yml
+sed -i "s|^app.frontend.api_base_url: http://localhost:8888|app.frontend.api_base_url: http://$IP_ADDRESS:8888|" conf/local.yml
 
 sudo chown -R caldera:caldera /opt/caldera
 sudo chmod 644 /etc/systemd/system/caldera.service

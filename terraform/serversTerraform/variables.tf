@@ -44,18 +44,3 @@ variable "private_ssh_key" {
   description = "SSH Key"
   type        = string
 }
-
-variable "ansible_config" {
-  description = "Ansible Config"
-  type        = string
-}
-
-variable "ansible_playbook" {
-  description = "Ansible Playbook"
-  type        = string
-}
-
-variable "ansible_inventory" {
-  description = "Ansible Inventory"
-  type        = string
-}

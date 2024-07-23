@@ -1,0 +1,8 @@
+proxmox_url             = "https://192.168.1.1:8006/api2/json"
+proxmox_username        = "packer@pve"
+proxmox_token           = "CHANGEME"
+proxmox_skip_tls_verify = "true"
+proxmox_node            = "pve"
+proxmox_pool            = "Templates"
+proxmox_iso_storage     = "local"
+proxmox_vm_storage      = "local-lvm"

@@ -1,0 +1,12 @@
+---
+- name: Run ipconfig on remote Windows host
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Execute ipconfig
+      win_command: ipconfig
+      register: ipconfig_output
+
+    - name: Print ipconfig output
+      debug:
+        var: ipconfig_output.stdout

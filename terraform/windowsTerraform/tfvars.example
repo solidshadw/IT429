@@ -3,20 +3,13 @@
 ######################################################################################
 
 
-pm_api_url           = "https://<IP-HOST:8006/api2/json"
-pm_api_token_secret  = "TOKEN"
-pm_api_token_id      = "ID"
-pm_tls_insecure      = true
-target_node          = "pve"
-template_name_ubuntu = "" # Replace with the actual template ID of ubuntu-cloud
-template_name_kali   = "" # Replace with the actual template ID of kali-cloud   
-public_ssh_key       = ""
-private_ssh_key      = ""
-template_name_ubuntu = "" # Replace with the actual template ID of ubuntu-cloud
-template_name_kali   = ""     # Replace with the actual template ID of kali-cloud .
-template_name_windows10 = "" # Replace with the actual template ID of windows10-cloud
-public_ssh_key       = "/home/solidshadw/.ssh/ansibleKeys.pub"
-private_ssh_key      = "/home/solidshadw/.ssh/ansibleKeys"
-ansible_config       = "../wazy-ansible/playbooks/ansible.cfg"
-ansible_playbook     = "../wazy-ansible/playbooks/wazuh-production-ready.yml"
-ansible_inventory    = "../wazy-ansible/playbooks/inventory.ini"
+pm_api_url                      = "https://192.168.0.200:8006/api2/json"
+pm_api_token_secret             = ""
+pm_api_token_id                 = ""
+pm_tls_insecure                 = true
+target_node                     = "pve"
+template_name_ubuntu            = "ubuntu-template"                # Replace with the actual template ID of ubuntu-cloud
+template_name_kali              = "kali-2024-1"                    # Replace with the actual template ID of kali-cloud
+template_name_windows10         = "Windows10x64-22h2-cloudinit-raw"                # Replace with the actual template ID of windows10-cloud
+template_name_windowsserver2016 = "WinServer2016x64-cloudinit-raw" # Replace with the actual template ID of windows10-cloud
+template_name_windowsserver2019 = "WinServer2019x64-cloudinit-raw" # Replace with the actual template ID of windows10-cloud 

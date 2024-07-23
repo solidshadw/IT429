@@ -35,32 +35,17 @@ variable "template_name_kali" {
   type        = string
 }
 
-variable "template_name_windows10" {
+variable "template_name_windowsserver2019" {
   description = "Template VM ID to clone from"
   type        = string
 }
 
-variable "public_ssh_key" {
-  description = "SSH Key"
+variable "template_name_windowsserver2016" {
+  description = "Template VM ID to clone from"
   type        = string
 }
 
-variable "private_ssh_key" {
-  description = "SSH Key"
-  type        = string
-}
-
-variable "ansible_config" {
-  description = "Ansible Config"
-  type        = string
-}
-
-variable "ansible_playbook" {
-  description = "Ansible Playbook"
-  type        = string
-}
-
-variable "ansible_inventory" {
-  description = "Ansible Inventory"
+variable "template_name_windows10" {
+  description = "Template VM ID to clone from"
   type        = string
 }

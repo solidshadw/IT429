@@ -39,7 +39,7 @@ resource "proxmox_vm_qemu" "ubuntu_vm" {
     }
   }
 
-  ipconfig0 = "ip=192.168.0.11${count.index + 1}/24,gw=192.168.0.1"
+  ipconfig0 = "ip=${count.index + 1}/24,gw=192.168.0.1"
 
   vga {
     type = "std"

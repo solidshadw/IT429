@@ -33,3 +33,11 @@ override.tf.json
 .terraformrc
 terraform.rc
 .terraform.lock.hcl*
+
+
+# Ignore Visual Studio Code files
+.vscode/*
+!.vscode/settings.json
+
+# Ignore Packer files
+my.pkrvars.hcl

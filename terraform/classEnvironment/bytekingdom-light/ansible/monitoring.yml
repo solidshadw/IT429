@@ -1,0 +1,23 @@
+---
+# Load datas
+- name: "Setup Red Tooling with tasks"
+  hosts: wazuh
+  tasks:
+    - name: "Installing caldera_agent.ps1"
+      include_role:
+        name: "ps"
+      vars:
+        script_path: "../scripts"
+        ps_script: "{{script_path}}/tools_red.ps1"
+    - name: "Installing caldera_agent.ps1"
+      include_role:
+        name: "ps"
+      vars:
+        script_path: "../scripts"
+        ps_script: "{{script_path}}/caldera_agent.ps1"    
+    - name: "Installing caldera_agent.ps1"
+      include_role:
+        name: "ps"
+      vars:
+        script_path: "../scripts"
+        ps_script: "{{script_path}}/sysmon.ps1"

@@ -1,0 +1,20 @@
+- name: Ensure the DNS Server feature is installed
+  win_feature:
+    name: DNS
+    state: present
+  register: dns_feature
+
+- name: Install DnsServer PowerShell module if needed
+  win_psmodule:
+    name: DnsServer
+    state: present
+  when: dns_feature.changed
+
+- name: Add DNS server zone
+  community.windows.win_dns_zone:
+    name: "{{ zone_name }}"
+    type: forwarder
+    replication: "{{ replication }}"
+    dns_servers:
+      - "{{ master_server }}"
+  when: dns_feature.changed
