@@ -183,13 +183,13 @@ install_provisioning(){
                 cd $lab/ansible
                 export LAB=$lab PROVIDER=$provider
                 echo "${OK1} Sleeping 4ms to let the VMs boot"
-                #sleep 240           
+                sleep 240           
                 ./provisioning.sh
                 
               else
                 cd $lab/ansible
                 echo "${OK1} Sleeping 4ms to let the VMs boot"
-                #sleep 240
+                sleep 240
                 ansible-playbook -i ../data/inventory -i ../inventory $ANSIBLE_PLAYBOOK
                 cd -
               fi
@@ -202,7 +202,7 @@ install_provisioning(){
 install(){
   echo "${OK} Launch installation for: $LAB / $PROVIDER / $METHOD"
   cd $CURRENT_DIR
-  #install_providing $SIEM
+  install_providing $SIEM
   if [[ "$ANSIBLE_ONLY" -eq 0 ]]; then
     install_providing $LAB
   fi
