@@ -2,7 +2,7 @@ pm_api_url = "https://192.168.0.200:8006/api2/json" // this is the URL of your P
 pm_user = "user@pve!terraform_token" // this is the user you created in the previous step eg. terraform@pve
 pm_api_token = "terraform@pve!terraform_token=RANDOM-TOKEN" // this is the token you created in the previous step eg. terraform@pve!terraform_token=1234567890
 pm_node = "pve" // this is the name of the node you want to deploy the VMs on
-pm_pool = "" // this is the name of the pool you want to deploy the VMs in
+pm_pool = "SOC-Class" // this is the name of the pool you want to deploy the VMs in
 pm_full_clone = true    // bolean this will create a full clone of the template
 storage = "local-lvm" // change this with the name of the storage you use
 network_bridge = "vmbr0" // this is your network bridge you want to use

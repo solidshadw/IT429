@@ -15,14 +15,6 @@ agent_1 ansible_host=192.168.0.10
 agent_2 ansible_host=192.168.0.11
 agent_3 ansible_host=192.168.0.22
 
-
-[wazuh_agents:vars]
-ansible_user=vagrant
-ansible_password=vagrant
-ansible_connection=winrm
-ansible_winrm_server_cert_validation=ignore
-ansible_ssh_port=5986
-
 [all:vars]
 ; domain_name : folder inside ad/
 domain_name=bytekingdom-light

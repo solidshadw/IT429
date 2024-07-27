@@ -30,10 +30,10 @@ variable "template_name_ubuntu" {
   type        = string
 }
 
-variable "template_name_kali" {
-  description = "Template VM ID to clone from"
-  type        = string
-}
+# variable "template_name_kali" {
+#   description = "Template VM ID to clone from"
+#   type        = string
+# }
 
 variable "public_ssh_key" {
   description = "SSH Key"

@@ -134,6 +134,7 @@ case $LAB in
         run_ansible servers.yml
         run_ansible security.yml
         run_ansible vulnerabilities.yml
+        run_ansible wazuh-agent.yml
         run_ansible monitoring.yml
       ;;
 esac

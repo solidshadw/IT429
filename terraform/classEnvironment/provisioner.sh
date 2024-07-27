@@ -10,10 +10,10 @@ PROVIDER="proxmox"
 METHOD=
 JOB=
 PROVIDERS="proxmox"
-LABS="BYTEKINGDOM-Light"
+LABS="bytekingdom-light"
 SIEM="SIEM"
 TASKS="check install start stop status restart destroy disablevagrant enablevagrant"
-ANSIBLE_PLAYBOOKS="edr.yml build.yml ad-servers.yml ad-parent_domain.yml ad-child_domain.yml ad-members.yml ad-trusts.yml ad-data.yml ad-gmsa.yml laps.yml ad-relations.yml adcs.yml ad-acl.yml servers.yml security.yml vulnerabilities.yml reboot.yml elk.yml sccm-install.yml sccm-config.yml monitoring.yml"
+ANSIBLE_PLAYBOOKS="edr.yml build.yml ad-servers.yml ad-parent_domain.yml ad-child_domain.yml ad-members.yml ad-trusts.yml ad-data.yml ad-gmsa.yml laps.yml ad-relations.yml adcs.yml ad-acl.yml servers.yml security.yml vulnerabilities.yml reboot.yml elk.yml sccm-install.yml sccm-config.yml monitoring.yml wazuh-agent.yml"
 METHODS="local"
 ANSIBLE_ONLY=0
 ANSIBLE_PLAYBOOK=
@@ -50,7 +50,7 @@ print_usage() {
   done
   echo "${INFO} -h : show this help";
   echo
-  echo "${OK} example: ./goad.sh -t check -l GOAD -p virtualbox -m local";
+  echo "${OK} example: ./provisioner.sh -t check -l GOAD -p virtualbox -m local";
   exit 0
 }
 
@@ -182,14 +182,14 @@ install_provisioning(){
               echo "${OK} Launching ansible playbook: $lab"
                 cd $lab/ansible
                 export LAB=$lab PROVIDER=$provider
-                echo "${OK1} Sleeping 3ms to let the VMs boot"
-                sleep 180           
+                echo "${OK1} Sleeping 4ms to let the VMs boot"
+                #sleep 240           
                 ./provisioning.sh
                 
               else
                 cd $lab/ansible
-                echo "${OK1} Sleeping 3ms to let the VMs boot"
-                sleep 180
+                echo "${OK1} Sleeping 4ms to let the VMs boot"
+                #sleep 240
                 ansible-playbook -i ../data/inventory -i ../inventory $ANSIBLE_PLAYBOOK
                 cd -
               fi
@@ -202,7 +202,7 @@ install_provisioning(){
 install(){
   echo "${OK} Launch installation for: $LAB / $PROVIDER / $METHOD"
   cd $CURRENT_DIR
-  install_providing $SIEM
+  #install_providing $SIEM
   if [[ "$ANSIBLE_ONLY" -eq 0 ]]; then
     install_providing $LAB
   fi

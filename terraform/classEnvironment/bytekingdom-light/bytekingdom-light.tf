@@ -52,6 +52,7 @@ resource "proxmox_virtual_environment_vm" "bytekingdom" {
   tags        = ["soc"]
   node_name   = var.pm_node
   pool_id     = var.pm_pool
+  stop_on_destroy = true
 
   operating_system {
     type = "win10"

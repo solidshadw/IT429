@@ -1,0 +1,19 @@
+---
+- hosts: wazuh
+  roles:
+    - ansible-wazuh-agent
+  vars:
+    wazuh_managers:
+      - address: 192.168.0.101
+        port: 1514
+        protocol: tcp
+        api_port: 55000
+        api_proto: 'http'
+        api_user: 'ansible'
+    wazuh_agent_authd:
+      registration_address: 192.168.0.101
+      enable: true
+      port: 1515
+      ssl_agent_ca: null
+      ssl_auto_negotiate: 'no'
+      agent_name: "{{ inventory_hostname }}"
