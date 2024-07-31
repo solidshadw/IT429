@@ -77,7 +77,9 @@ Start-Process -FilePath C:\Users\Public\splunkd.exe -ArgumentList "-server $serv
 $action = New-ScheduledTaskAction -Execute "C:\Users\Public\splunkd.exe" -Argument "-server $server -group red"
 $trigger = New-ScheduledTaskTrigger -AtStartup
 $principal = New-ScheduledTaskPrincipal -UserId "SYSTEM" -LogonType ServiceAccount -RunLevel Highest
-$settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
-Register-ScheduledTask -Action $action -Trigger $trigger -Principal $principal -Settings $settings -TaskName "CalderaAgent2"
+$settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -DisallowStartOnRemoteAppSession -ExecutionTimeLimit (New-TimeSpan -Days 0 -Hours 0 -Minutes 0 -Seconds 0) -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 1)
+
+Register-ScheduledTask -Action $action -Trigger $trigger -Principal $principal -Settings $settings -TaskName "CalderaAgent"
+
 
 lwrite("End of caldera.ps1")
