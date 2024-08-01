@@ -10,18 +10,17 @@ PROVIDER="proxmox"
 METHOD=
 JOB=
 PROVIDERS="proxmox"
-LABS="bytekingdom-light"
-SIEM="SIEM"
+LABS="bytekingdom-light SIEM"
 TASKS="check install start stop status restart destroy disablevagrant enablevagrant"
 ANSIBLE_PLAYBOOKS="edr.yml build.yml ad-servers.yml ad-parent_domain.yml ad-child_domain.yml ad-members.yml ad-trusts.yml ad-data.yml ad-gmsa.yml laps.yml ad-relations.yml adcs.yml ad-acl.yml servers.yml security.yml vulnerabilities.yml reboot.yml elk.yml sccm-install.yml sccm-config.yml monitoring.yml wazuh-agent.yml"
 METHODS="local"
 ANSIBLE_ONLY=0
 ANSIBLE_PLAYBOOK=
-GOAD_VAGRANT_OPTIONS=
-GOAD_EXTENSIONS="elk"
+BYTEKINGDOM_VAGRANT_OPTIONS=
+BYTEKINGDOM_EXTENSIONS=""
 
 print_usage() {
-  echo "${ERROR} Usage: ./goad.sh -t task -l lab -p provider -m method"
+  echo "${ERROR} Usage: ./provisioner.sh -t task -l lab1,lab2 -p provider -m method"
   echo "${INFO} -t : task must be one of the following:"
   echo "   - check   : verify dependencies";
   echo "   - install : create the lab";
@@ -30,7 +29,7 @@ print_usage() {
   echo "   - restart : reload the lab";
   echo "   - status  : show lab info and status";
   echo "   - destroy : trash the lab";
-  echo "${INFO} -l : lab must be one of the following:"
+  echo "${INFO} -l : lab(s) must be one or more of the following, separated by commas:"
   for lab in $LABS;  do
     echo "   - $lab";
   done
@@ -40,17 +39,16 @@ print_usage() {
   done
   echo "${INFO} -m : method must be one of the following (optional, default : local):"
   echo "   - local : to use local ansible install (default)";
-  echo "   - docker : to use docker ansible install";
   echo "${INFO} -a : to run only ansible on install (optional)";
   echo "${INFO} -r : to run only one ansible playbook (optional)";
-  echo "   - example : vulnerabilities.yml";
+  echo "${OK} example: ./provisioner.sh -t check -l bytekingdom-light -r vulnerabilities.yml -p proxmox -m local";
   echo "${INFO} -e : to activate extension (separated by coma) (optional)";
-  for extension in $GOAD_EXTENSIONS;  do
+  for extension in $BYTEKINGDOM_EXTENSIONS;  do
     echo "   - $extension";
   done
   echo "${INFO} -h : show this help";
   echo
-  echo "${OK} example: ./provisioner.sh -t check -l GOAD -p virtualbox -m local";
+  echo "${OK} example: ./provisioner.sh -t check -l bytekingdom-light -p virtualbox -m local";
   exit 0
 }
 
@@ -69,7 +67,7 @@ while getopts t:l:p:m:ar:e:h flag
           m) METHOD=${OPTARG};;
           a) ANSIBLE_ONLY=1;;
           r) ANSIBLE_PLAYBOOK=${OPTARG};;
-          e) GOAD_VAGRANT_OPTIONS="$GOAD_VAGRANT_OPTIONS,${OPTARG}";;
+          e) BYTEKINGDOM_VAGRANT_OPTIONS="$BYTEKINGDOM_VAGRANT_OPTIONS,${OPTARG}";;
           h) print_usage; exit;
       esac
   done
@@ -88,6 +86,16 @@ while getopts t:l:p:m:ar:e:h flag
     print_usage
   fi
 
+  IFS=',' read -ra LABS_TO_CHECK <<< "$LAB"
+  for lab in "${LABS_TO_CHECK[@]}"; do
+    if exists_in_list "$LABS" "$lab"; then
+      echo "${OK} Lab: $lab"
+    else
+      echo "${ERROR} Lab: $lab not allowed"
+      print_usage
+    fi
+  done
+
   if exists_in_list "$PROVIDERS" "$PROVIDER"; then
     echo "${OK} Provider: $PROVIDER"
   else
@@ -96,12 +104,12 @@ while getopts t:l:p:m:ar:e:h flag
   fi
 
   # loop on every extension
-  for GOAD_EXT in $(echo $GOAD_VAGRANT_OPTIONS | sed "s/,/ /g")
+  for BYTEKINGDOM_EXT in $(echo $BYTEKINGDOM_VAGRANT_OPTIONS | sed "s/,/ /g")
   do
-      if exists_in_list "$GOAD_EXTENSIONS" "$GOAD_EXT"; then
-        echo "${OK} Extension: $GOAD_EXT"
+      if exists_in_list "$BYTEKINGDOM_EXTENSIONS" "$BYTEKINGDOM_EXT"; then
+        echo "${OK} Extension: $BYTEKINGDOM_EXT"
       else
-        echo "${ERROR} Extension: $GOAD_EXT not allowed"
+        echo "${ERROR} Extension: $BYTEKINGDOM_EXT not allowed"
         print_usage
       fi
   done
@@ -169,7 +177,6 @@ install_providing(){
   done
 }
 
-
 install_provisioning(){
   lab=$1
   provider=$2
@@ -202,12 +209,37 @@ install_provisioning(){
 install(){
   echo "${OK} Launch installation for: $LAB / $PROVIDER / $METHOD"
   cd $CURRENT_DIR
-  install_providing $SIEM
+  
+  # Split the LAB variable into an array
+  IFS=',' read -ra LABS_TO_INSTALL <<< "$LAB"
+  
+  for lab in "${LABS_TO_INSTALL[@]}"; do
+    echo "${INFO} Installing lab: $lab"
+    install_providing $lab
+    if [ $? -ne 0 ]; then
+      echo "${ERROR} Installation of $lab failed. Stopping the process."
+      return 1
+    fi
+  done
+  
   if [[ "$ANSIBLE_ONLY" -eq 0 ]]; then
-    install_providing $LAB
+    for lab in "${LABS_TO_INSTALL[@]}"; do
+      install_providing $lab
+      if [ $? -ne 0 ]; then
+        echo "${ERROR} Second installation phase of $lab failed. Stopping the process."
+        return 1
+      fi
+    done
   fi
+  
   cd $CURRENT_DIR
-  install_provisioning $LAB $PROVIDER $METHOD
+  for lab in "${LABS_TO_INSTALL[@]}"; do
+    install_provisioning $lab $PROVIDER $METHOD
+    if [ $? -ne 0 ]; then
+      echo "${ERROR} Provisioning of $lab failed. Stopping the process."
+      return 1
+    fi
+  done
 }
 
 check(){
@@ -327,7 +359,7 @@ status(){
   case $PROVIDER in
     "virtualbox"|"vmware")
           cd "$LAB"
-          GOAD_VAGRANT_OPTIONS=$GOAD_VAGRANT_OPTIONS vagrant status
+          BYTEKINGDOM_VAGRANT_OPTIONS=$BYTEKINGDOM_VAGRANT_OPTIONS vagrant status
           cd -
       ;;
     "proxmox")
@@ -369,6 +401,10 @@ main() {
       ;;
     install)
       install
+      if [ $? -ne 0 ]; then
+        echo "${ERROR} Installation process failed."
+        exit 1
+      fi
       ;;
     status)
       status

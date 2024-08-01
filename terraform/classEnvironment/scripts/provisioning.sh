@@ -5,7 +5,7 @@ OK=$(tput setaf 2; echo -n "[✓]"; tput sgr0)
 INFO=$(tput setaf 3; echo -n "[-]"; tput sgr0)
 
 RESTART_COUNT=0
-MAX_RETRY=3
+MAX_RETRY=5
 
 echo "[+] Current folder $(pwd)"
 echo "[+] Current LAB : $LAB"
@@ -64,56 +64,8 @@ echo "[+] Running all the playbook to setup the lab"
 SECONDS=0
 
 case $LAB in
-    "NHA")
-        echo "[+] Entering NHA build"
-        run_ansible build.yml
-        run_ansible ad-servers.yml
-        run_ansible ad-parent_domain.yml
-        #run_ansible ad-child_domain.yml
-        run_ansible ad-members.yml
-        run_ansible ad-trusts.yml
-        run_ansible ad-data.yml
-        run_ansible ad-gmsa.yml
-        #run_ansible laps.yml
-        run_ansible ad-relations.yml
-        run_ansible adcs.yml
-        run_ansible ad-acl.yml
-        run_ansible servers.yml
-        run_ansible security.yml
-        run_ansible vulnerabilities.yml
-        ;;
-    "SCCM")
-        echo "[+] Entering SCCM build"
-        run_ansible build.yml
-        run_ansible ad-servers.yml
-        run_ansible ad-parent_domain.yml
-        #run_ansible ad-child_domain.yml
-        run_ansible ad-members.yml
-        #run_ansible ad-trusts.yml
-        run_ansible ad-data.yml
-        #run_ansible ad-gmsa.yml
-        #run_ansible laps.yml
-        run_ansible ad-relations.yml
-        #run_ansible adcs.yml
-        run_ansible ad-acl.yml
-        run_ansible servers.yml
-        run_ansible security.yml
-        run_ansible vulnerabilities.yml
-        run_ansible sccm-install.yml
-        echo "$INFO Waiting 10 minutes for the install to complete"
-        sleep 10m
-        run_ansible reboot.yml
-        # reboot before launching the sccm config to finish the install
-        echo "$INFO Waiting 5 minutes before launching the configuration"
-        sleep 5m
-        run_ansible dhcp.yml
-        run_ansible sccm-config.yml
-        run_ansible sccm-pxe.yml
-        # replay client install fix some issue in enrollement for CLIENT
-        run_ansible sccm-client.yml
-        ;;
     *)
-        # GOAD / GOAD-Light / others
+        # bytekingdom-light
         echo "[+] Entering $LAB build"
         run_ansible build.yml
         run_ansible ad-servers.yml
