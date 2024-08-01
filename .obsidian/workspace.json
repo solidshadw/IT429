@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "terraform/classEnvironment/README.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "terraform/classEnvironment/README.md",
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "terraform/classEnvironment/README.md",
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "terraform/classEnvironment/README.md"
+                "file": "README.md"
               }
             }
           }
@@ -148,14 +148,15 @@
   },
   "active": "7bc03cf2b3f7ae8a",
   "lastOpenFiles": [
+    "terraform/classEnvironment.md",
+    "README.md",
+    "terraform/README.md",
+    "terraform/classEnvironment/README.md",
     "terraform/classEnvironment/SIEM/terraform.tfvars.template",
     "().md",
-    "terraform/classEnvironment/README.md",
     "Manual-Approach-Creating-Windows-VM.md",
     "Questions.md",
     "Setup-Terraform-User.md",
-    "Setup-Packer-User.md",
-    "README.md",
-    "terraform/README.md"
+    "Setup-Packer-User.md"
   ]
 }
