@@ -195,8 +195,7 @@ install_provisioning(){
                 
               else
                 cd $lab/ansible
-                echo "${OK1} Sleeping 4ms to let the VMs boot"
-                sleep 240
+                echo "${OK1} Launching ansible playbook: $ANSIBLE_PLAYBOOK"
                 ansible-playbook -i ../data/inventory -i ../inventory $ANSIBLE_PLAYBOOK
                 cd -
               fi

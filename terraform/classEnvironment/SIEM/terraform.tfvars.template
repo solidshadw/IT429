@@ -5,7 +5,7 @@
 
 pm_api_url           = "https://<IP-HOST:8006/api2/json"
 pm_api_token_secret  = "TOKEN"
-pm_api_token_id      = "ID"
+pm_api_token_id      = "terraform@pve!terraform_token"
 pm_tls_insecure      = true
 target_node          = "pve"
 # Replace with the actual template ID of ubuntu-cloud

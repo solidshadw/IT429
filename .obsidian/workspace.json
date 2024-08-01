@@ -1,64 +1,39 @@
 {
   "main": {
-    "id": "bc744091ad43b82c",
+    "id": "ad75885aaa3eebba",
     "type": "split",
     "children": [
       {
-        "id": "8a00a2600a5c887a",
+        "id": "bd1e50035bdb7741",
         "type": "tabs",
         "children": [
           {
-            "id": "fd226de07d56581f",
+            "id": "7bc03cf2b3f7ae8a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Questions.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "0a335ad5f6d6883a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Setup-Packer-User.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "99a089a1fe11a6d1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Incident Report Template.md",
+                "file": "terraform/classEnvironment/README.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "0914b98928f5f286",
+    "id": "42220caebc7c2c22",
     "type": "split",
     "children": [
       {
-        "id": "49b2f2c248670015",
+        "id": "1431e22dcc71c219",
         "type": "tabs",
         "children": [
           {
-            "id": "ddc7010f676c29fd",
+            "id": "e8316ee933adb639",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -68,7 +43,7 @@
             }
           },
           {
-            "id": "c6b6763015317ccc",
+            "id": "1e54d382324ebcc5",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -83,7 +58,7 @@
             }
           },
           {
-            "id": "adacf77de20281ca",
+            "id": "a32022c99d1c82ae",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -94,31 +69,23 @@
       }
     ],
     "direction": "horizontal",
-<<<<<<< Updated upstream
-    "width": 292.5
-=======
-    "width": 253.5
->>>>>>> Stashed changes
+    "width": 300
   },
   "right": {
-    "id": "2117a73a940511e7",
+    "id": "da306fe765c6acf3",
     "type": "split",
     "children": [
       {
-        "id": "dbb1c75227e080ef",
+        "id": "7660bd23ec8800b3",
         "type": "tabs",
         "children": [
           {
-            "id": "153079466c0332d6",
+            "id": "d40c6b56d075e15d",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-<<<<<<< Updated upstream
-                "file": "Incident Report Template.md",
-=======
-                "file": "Setup-Packer-User.md",
->>>>>>> Stashed changes
+                "file": "terraform/classEnvironment/README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -130,23 +97,19 @@
             }
           },
           {
-            "id": "b21c1e8f85ea77e0",
+            "id": "50d37f6352b903cd",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-<<<<<<< Updated upstream
-                "file": "Incident Report Template.md",
-=======
-                "file": "Setup-Packer-User.md",
->>>>>>> Stashed changes
+                "file": "terraform/classEnvironment/README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
           },
           {
-            "id": "f67c8fc4ffe8b706",
+            "id": "90af96a33e6e0088",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -157,16 +120,12 @@
             }
           },
           {
-            "id": "c4b9e5a7acec6ef7",
+            "id": "bbd6c25219437c6b",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-<<<<<<< Updated upstream
-                "file": "Incident Report Template.md"
-=======
-                "file": "Setup-Packer-User.md"
->>>>>>> Stashed changes
+                "file": "terraform/classEnvironment/README.md"
               }
             }
           }
@@ -187,84 +146,16 @@
       "command-palette:Open command palette": false
     }
   },
-<<<<<<< Updated upstream
-  "active": "99a089a1fe11a6d1",
+  "active": "7bc03cf2b3f7ae8a",
   "lastOpenFiles": [
-    "Guides/Using Obsidian with Github Desktop.md",
-    "Incident Report Template.md",
-    "Guides/Setup your Virtual Machine.md",
-    "Step-2-Create-Proxmox-Windows10-Template.md",
-=======
-  "active": "0a335ad5f6d6883a",
-  "lastOpenFiles": [
-    "packer/proxmox/packer.pkr.hcl",
-    "packer/proxmox/packer.json.pkr.hcl",
-    "packer/proxmox/generic.pkr.hcl",
-    "packer/proxmox/iso/Windows-10-22h2_x64_en-us.iso",
-    "packer/proxmox/iso/windows_server_2016_14393.0_eval_x64.iso",
-    "packer/proxmox/iso/windows_server2019_x64FREE_en-us.iso",
-    "packer/proxmox/iso/windows_server2019_x64FREE_en-us..iso",
-    "packer/proxmox/packer.pkr.json",
-    "packer/proxmox/windows_server2019_proxmox_cloudinit.pkvars.hcl",
-    "packer/proxmox/windows_server2019_proxmox_cloudinit.pkr.hcl",
-    "packer/proxmox/iso/windows_server_2016_14393.0_eval_x64.iso.ISO",
-    "packer/vagrant/README.md",
-    "packer/proxmox/README.md",
-    "Step-3-Setup-Terraform-User-in-Proxmox-VE.md",
-    "Setup-Packer-User.md",
+    "terraform/classEnvironment/SIEM/terraform.tfvars.template",
+    "().md",
+    "terraform/classEnvironment/README.md",
+    "Manual-Approach-Creating-Windows-VM.md",
     "Questions.md",
-    "terraform/windowsTerraform/README.md",
->>>>>>> Stashed changes
-    "screenshots/Pasted_image_20240610222113.png",
-    "screenshots/Pasted_image_20240610221936.png",
-    "screenshots/Pasted_image_20240610205621.png",
-    "screenshots/Pasted_image_20240610205017.png",
-    "screenshots/Pasted_image_20240610204805.png",
-    "screenshots/Pasted_image_20240519212908.png",
-    "screenshots/Pasted_image_20240517143752.png",
-    "screenshots/Pasted_image_20240517143622.png",
-    "screenshots/Pasted_image_20240515222104.png",
-    "screenshots/Pasted_image_20240515151834.png",
-<<<<<<< Updated upstream
-    "terraform/wazy-ansible/notes.md",
-    "terraform/classEnvironment/terraform.tfstate.backup",
-    "terraform/classEnvironment/terraform.tfstate",
-    "terraform/classEnvironment/tfvars.example",
-    "terraform/classEnvironment/setupFiles/vectr_env",
-    "terraform/classEnvironment/setupFiles/local.yml",
-    "terraform/classEnvironment/setupFiles/caldera.service",
-    "terraform/classEnvironment/setupFiles/bootstrap.sh",
-    "terraform/classEnvironment/setupFiles",
-    "terraform/classEnvironment/main.tf",
-    "terraform/classEnvironment/variables.tf",
-    "terraform/windowsTerraform/README.md",
-    "terraform/wazuhTerraform copy/README.md",
-=======
-    "Step-2-Create-Proxmox-Windows10-Template.md",
->>>>>>> Stashed changes
-    "Step-1-Create-Proxmox-Linux-VM-Templates.md",
-    "terraform/wazy-ansible/roles/wazuh/ansible-wazuh-manager/README.md",
-    "terraform/wazy-ansible/roles/wazuh/ansible-wazuh-agent/README.md",
-    "terraform/wazy-ansible/roles/wazuh/ansible-filebeat-oss/README.md",
-    "terraform/wazy-ansible/SECURITY.md",
-    "terraform/wazy-ansible/README.md",
-    "terraform/wazy-ansible/CHANGELOG.md",
-    "terraform/wazy/roles/wazuh/ansible-wazuh-manager/README.md",
-    "terraform/wazy/roles/wazuh/ansible-wazuh-agent/README.md",
-    "terraform/wazy/roles/wazuh/ansible-filebeat-oss/README.md",
-    "terraform/wazy/SECURITY.md",
-    "terraform/wazy/README.md",
-    "terraform/wazy/CHANGELOG.md",
-<<<<<<< Updated upstream
-    "terraform/wazy-ansible/README.md",
-    "terraform/wazy-ansible/SECURITY.md",
-    "terraform/wazy-ansible/CHANGELOG.md"
-=======
-    "terraform/wazuh-ansible/roles/wazuh/ansible-wazuh-manager/README.md",
-    "terraform/wazuh-ansible/roles/wazuh/ansible-filebeat-oss/README.md",
-    "terraform/wazuh-ansible/roles/wazuh/ansible-wazuh-agent/README.md",
-    "terraform/wazuh-ansible/README.md",
-    "terraform/wazuh-ansible/SECURITY.md"
->>>>>>> Stashed changes
+    "Setup-Terraform-User.md",
+    "Setup-Packer-User.md",
+    "README.md",
+    "terraform/README.md"
   ]
 }
