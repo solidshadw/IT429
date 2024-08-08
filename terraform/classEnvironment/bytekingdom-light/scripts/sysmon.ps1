@@ -19,7 +19,7 @@ if (-not (Test-Path -Path $stagingdir)) {
 lwrite("Starting sysmon.ps1")
 
 # Download Sysmon config xml
-$object_url = "https://raw.githubusercontent.com/SwiftOnSecurity/sysmon-config/master/sysmonconfig-export.xml"
+$object_url = "https://wazuh.com/resources/blog/emulation-of-attack-techniques-and-detection-with-wazuh/sysmonconfig.xml"
 $outfile = "C:\Tools\sysmonconfig-export.xml"
 $MaxAttempts = 5
 $TimeoutSeconds = 30
