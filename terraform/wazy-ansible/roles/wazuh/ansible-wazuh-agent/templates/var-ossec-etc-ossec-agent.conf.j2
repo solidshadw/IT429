@@ -429,6 +429,13 @@
   {% endfor %}
   {% endif %}
 
+  <!-- Adding Sysmon Logging by default -->
+  
+  <localfile>
+     <location>Microsoft-Windows-Sysmon/Operational</location>
+     <log_format>eventchannel</log_format>
+  </localfile>
+
 {% if wazuh_agent_config.labels.enable == true %}
   <labels>
   {% for label in wazuh_agent_config.labels.list %}

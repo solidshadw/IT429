@@ -1,4 +1,3 @@
-
 # Set logfile and function for writing logfile
 $logfile = "C:\Tools\red_log.log"
 Function lwrite {
@@ -25,6 +24,14 @@ if (Test-Path -Path "C:\Tools") {
 } else {
   lwrite("Creating C:\Tools")
   New-Item -Path "C:\Tools" -ItemType Directory
+}
+
+# Creating a Temp folder for Caldera's Payloads
+if (Test-Path -Path "C:\Tools\Temp") {
+  lwrite("C:\Tools\Temp exists")
+} else {
+  lwrite("Creating C:\Tools\Temp")
+  New-Item -Path "C:\Tools\Temp" -ItemType Directory
 }
 
 # Turn off Defender realtime protection so tools can download properly
@@ -106,5 +113,55 @@ Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 Install-Module -Name invoke-atomicredteam,powershell-yaml -Scope AllUsers -Force
 IEX (IWR 'https://raw.githubusercontent.com/redcanaryco/invoke-atomicredteam/master/install-atomicredteam.ps1' -UseBasicParsing);
 Install-AtomicRedTeam -getAtomics
+
+# Install Mimikatz
+
+# Define the URL for the latest Mimikatz release
+$MimikatzUrl = "https://github.com/gentilkiwi/mimikatz/releases/latest/download/mimikatz_trunk.zip"
+$MaxAttempts = 5
+$TimeoutSeconds = 30
+$Attempt = 0
+$DownloadPath = "C:\Tools\mimikatz.zip"
+$ExtractPath = "C:\Tools\mimikatz"
+
+If (Test-Path -Path $DownloadPath) {
+  lwrite("Mimikatz zip exists")
+} else {
+  while ($Attempt -lt $MaxAttempts) {
+    $Attempt += 1
+    lwrite("Attempt: $Attempt")
+    try {
+        Invoke-WebRequest -Uri $MimikatzUrl -OutFile $DownloadPath -TimeoutSec $TimeoutSeconds
+        lwrite("Successful")
+        break
+    } catch {
+        if ($_.Exception.GetType().Name -eq "WebException" -and $_.Exception.Status -eq "Timeout") {
+            lwrite("Connection timed out. Retrying...")
+        } else {
+            lwrite("An unexpected error occurred:")
+            lwrite($_.Exception.Message)
+            break
+        }
+    }
+  }
+  if ($Attempt -eq $MaxAttempts) {
+    Write-Host "Reached maximum number of attempts. Continuing..."
+  }
+}
+
+if (Test-Path -Path $DownloadPath) {
+  lwrite("Extracting Mimikatz...")
+  Add-Type -AssemblyName System.IO.Compression.FileSystem
+  [System.IO.Compression.ZipFile]::ExtractToDirectory($DownloadPath, $ExtractPath)
+  lwrite("Mimikatz has been downloaded and extracted to $ExtractPath")
+} else {
+  lwrite("Something went wrong - Mimikatz zip not found")
+}
+
+# Clean up the downloaded zip file
+Remove-Item $DownloadPath
+
+lwrite("Mimikatz has been downloaded and extracted to $ExtractPath")
+
 
 lwrite("End of red.ps1")

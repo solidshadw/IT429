@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "a70979a393a19071",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Wazuh - Security Analyst Role.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "Wazuh - Security Analyst Role.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "README.md",
+                "file": "Wazuh - Security Analyst Role.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md"
+                "file": "Wazuh - Security Analyst Role.md"
               }
             }
           }
@@ -146,10 +159,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "7bc03cf2b3f7ae8a",
+  "active": "a70979a393a19071",
   "lastOpenFiles": [
-    "terraform/classEnvironment.md",
+    "templates/PlaybookTemplate.md",
+    "Guides/RunningWeeklyCalderaAttacks.md",
+    "Pasted image 20240903143300.png",
     "README.md",
+    "Wazuh - Security Analyst Role.md",
+    "terraform/classEnvironment.md",
     "terraform/README.md",
     "terraform/classEnvironment/README.md",
     "terraform/classEnvironment/SIEM/terraform.tfvars.template",

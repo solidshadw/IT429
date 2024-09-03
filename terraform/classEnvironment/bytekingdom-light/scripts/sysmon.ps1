@@ -98,39 +98,11 @@ if (Test-Path -Path "C:\Tools\Sysmon.zip") {
 }
 
 # Copy the Sysmon configuration for SwiftOnSecurity to destination Sysmon folder
-lwrite("Copy the Sysmon configuration for SwiftOnSecurity to destination Sysmon folder")
+lwrite("Copy the Sysmon configuration to destination Sysmon folder")
 Copy-Item "C:\Tools\sysmonconfig-export.xml" -Destination "C:\Tools\Sysmon"
 
 # Install Sysmon
 lwrite("Install Sysmon")
 C:\Tools\Sysmon\sysmon.exe -accepteula -i C:\Tools\Sysmon\sysmonconfig-export.xml
-
-# Add OSSEC agent configuration for Sysmon
-lwrite("Adding OSSEC agent configuration for Sysmon")
-$ossecConfigPath = "C:\Program Files (x86)\ossec-agent\ossec.conf"
-$sysmonConfig = @"
-  <localfile>
-    <location>Microsoft-Windows-Sysmon/Operational</location>
-    <log_format>eventchannel</log_format>
-  </localfile>
-
-"@
-
-if (Test-Path $ossecConfigPath) {
-    $ossecConfig = Get-Content $ossecConfigPath -Raw
-    if ($ossecConfig -notmatch [regex]::Escape($sysmonConfig)) {
-        $ossecConfig = $ossecConfig -replace "(  <active-response>)", "$sysmonConfig`$1"
-        Set-Content -Path $ossecConfigPath -Value $ossecConfig
-        lwrite("OSSEC agent configuration updated to capture Sysmon events")
-    } else {
-        lwrite("Sysmon configuration already exists in OSSEC agent config")
-    }
-} else {
-    lwrite("OSSEC agent configuration file not found at $ossecConfigPath")
-}
-
-Restart-Service -Name wazuh
-lwrite("Restarted OSSEC agent service")
-Get-Service -Name wazuh | Format-List -Property Name, Status, DisplayName, StartType | Out-File -FilePath $logfile -Append
 
 lwrite("End of sysmon.ps1")

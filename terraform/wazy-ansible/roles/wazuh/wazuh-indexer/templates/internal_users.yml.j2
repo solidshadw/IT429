@@ -19,3 +19,13 @@ kibanaserver:
   hash: "{{ dashboard_password }}"
   reserved: true
   description: "kibanaserver user"
+
+{% for i in range(1, 31) %}
+student{{ i }}:
+  hash: "{{ student_password }}"
+  reserved: true
+  backend_roles:
+  - "readall"
+  - "kibanauser"
+  description: "student user config"
+{% endfor %}
