@@ -93,5 +93,6 @@ You can also destroy the environment with:
 You will need to be in the same host/terminal that the `install` was ran from. Because terraform uses `.tfstate` files to keep track of resources created.
 If you don't have access to that host, you will have to manually stop and remove the VM's from proxmox.
 
-![classEnv](https://github.com/user-attachments/assets/f777c992-744e-4bac-8b45-ab63c5dbdfad)
+
+![classEnv](https://github.com/user-attachments/assets/eeef2b9d-4592-435f-87b5-bb35eec24703)
 
