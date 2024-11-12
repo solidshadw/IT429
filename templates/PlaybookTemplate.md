@@ -41,12 +41,6 @@ Assign steps to individuals or teams to work concurrently, this can be fictional
 
 `TODO: Consider automating containment measures using orchestration tools.`
 
-#### Eradicate
-
-`TODO: Customize eradication steps, tactical and strategic, for <Type of Incident>.`
-
-`TODO: Specify tools and procedures for each step, below.`
-
 
 
 #### Reference: Remediation Resources
