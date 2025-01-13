@@ -57,7 +57,6 @@ virt-customize -a jammy-server-cloudimg-amd64.img \
   --run-command 'chmod 700 /root/.ssh' \
   --run-command 'sed -i "s/^#PermitRootLogin .*/PermitRootLogin yes/" /etc/ssh/sshd_config' \
   --run-command 'sed -i "s/^PasswordAuthentication .*/PasswordAuthentication yes/" /etc/ssh/sshd_config' \
-  --run-command 'sed -i "s/^#PubkeyAuthentication .*/PubkeyAuthentication yes/" /etc/ssh/sshd_config' \
   --run-command 'echo "ubuntu ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/ubuntu' \
   --run-command 'truncate -s 0 /etc/machine-id' \
   --run-command "echo -n > /etc/machine-id" \
