@@ -37,8 +37,8 @@ virt-customize -a jammy-server-cloudimg-amd64.img \
   --run-command 'sed -i "s/^#PubkeyAuthentication .*/PubkeyAuthentication yes/" /etc/ssh/sshd_config' \
   --run-command 'echo "ubuntu ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/ubuntu' \
   --run-command 'truncate -s 0 /etc/machine-id' \
-  --run-command "echo -n > /etc/machine-id"
-  --run-command 'systemctl enable ssh'
+  --run-command "echo -n > /etc/machine-id" \
+  --run-command 'systemctl enable ssh' \
   --install qemu-guest-agent
 ```
 
