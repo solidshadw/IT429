@@ -29,14 +29,17 @@ sudo apt install p7zip-full libguestfs-tools
 
 ```bash
 virt-customize -a jammy-server-cloudimg-amd64.img \
+  --password ubuntu:password:ubuntu \
   --run-command 'mkdir -p /root/.ssh' \
   --run-command 'chmod 700 /root/.ssh' \
-  --run-command 'sed -i "s/^#PermitRootLogin .*/PermitRootLogin prohibit-password/" /etc/ssh/sshd_config' \
-  --run-command 'sed -i "s/^PasswordAuthentication .*/PasswordAuthentication no/" /etc/ssh/sshd_config' \
+  --run-command 'sed -i "s/^#PermitRootLogin .*/PermitRootLogin yes/" /etc/ssh/sshd_config' \
+  --run-command 'sed -i "s/^PasswordAuthentication .*/PasswordAuthentication yes/" /etc/ssh/sshd_config' \
   --run-command 'sed -i "s/^#PubkeyAuthentication .*/PubkeyAuthentication yes/" /etc/ssh/sshd_config' \
+  --run-command 'echo "ubuntu ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/ubuntu' \
   --run-command 'truncate -s 0 /etc/machine-id' \
-  --run-command 'ln -s /etc/machine-id /var/lib/dbus/machine-id' \
+  --run-command "echo -n > /etc/machine-id"
   --run-command 'systemctl enable ssh'
+  --install qemu-guest-agent
 ```
 
 - Create a virtual machine, so that we attach the ubuntu server cloud image: 
@@ -60,6 +63,11 @@ qm set 500 --scsihw virtio-scsi-single --scsi0 local-lvm:vm-500-disk-0
 ```sh
 qm set 500 --ide2 local-lvm:cloudinit
 ```
+
+- Networking
+```sh
+qm set 500 --ipconfig0 ip=dhcp
+``` 
 
 - Create bootdrive, so that we can boot from it:
 ```sh
