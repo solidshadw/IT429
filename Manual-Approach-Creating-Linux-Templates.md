@@ -27,26 +27,26 @@ sudo apt install p7zip-full libguestfs-tools
 
 - Create Snippet on Proxmox to allow user to change password at the first login and allow password login
   Create a directory for the snippets in your proxmox server
-  ```bash
-  mkdir /var/lib/vz/snippets
-  ```
+```bash
+mkdir /var/lib/vz/snippets
+```
 
   Create a file now with the following content:
-  ```bash
-  nano /var/lib/vz/snippets/ubuntu-allow-ssh
-  ```
-  ```bash
-  #cloud-config
-  users:
-    - name: ubuntu
-      shell: /bin/bash
-      sudo: ['ALL=(ALL) NOPASSWD:ALL']
-  ssh_pwauth: True
-  chpasswd:
-    list: |
-      ubuntu:ubuntu
-    expire: True
-  ```
+```bash
+nano /var/lib/vz/snippets/ubuntu-allow-ssh
+```
+```bash
+#cloud-config
+users:
+  - name: ubuntu
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+ssh_pwauth: True
+chpasswd:
+  list: |
+    ubuntu:ubuntu
+  expire: True
+```
   
 - We are just going to modify the image to include ansible and to allow ssh root login via an ssh key.
 
