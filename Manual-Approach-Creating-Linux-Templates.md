@@ -41,11 +41,11 @@ sudo apt install p7zip-full libguestfs-tools
     - name: ubuntu
       shell: /bin/bash
       sudo: ['ALL=(ALL) NOPASSWD:ALL']
-  ssh_pwauth: True ## This line enables ssh password authentication
+  ssh_pwauth: True
   chpasswd:
     list: |
-      ubuntu:ubuntu ## Overriding default username, password
-    expire: True ## Forcing user to change the default password at first login
+      ubuntu:ubuntu
+    expire: True
   ```
   
 - We are just going to modify the image to include ansible and to allow ssh root login via an ssh key.
@@ -100,6 +100,11 @@ qm set 500 --boot c --bootdisk scsi0
 - Enable the QEMU Guest Agent for the VM.
 ```sh
 qm set 500 --agent enabled=1
+```
+
+- Enable the snippet:
+```bash
+qm set 500 --cicustom "user=local:snippets/ubuntu-allow-ssh"
 ```
 
 - Enable console, so that we can use in proxmox GUI
