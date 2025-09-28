@@ -21,6 +21,7 @@
 ```
 
 - Create an Proxmox API User that terraform will use to authenticate and create the environment. Follow this [steps](https://github.com/solidshadw/IT429/blob/main/Setup-Terraform-User.md) for creation of that user on your proxmox terminal.
+- Make sure that you save all of the tokens created during the creation of the User. You will need them in Step 2.
 - Ubuntu Template, follow this [steps](https://github.com/solidshadw/IT429/blob/main/Manual-Approach-Creating-Linux-Templates.md)
 - Windows 2019 Template, follow this [steps](https://github.com/solidshadw/IT429/tree/main/packer/proxmox)
 
